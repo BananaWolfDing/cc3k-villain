@@ -7,7 +7,7 @@
 class elf : public enemy {
 public:
   elf();
-  void attack(character &defender);
+  int attack(character &defender);
 };
 
 #endif
