@@ -6,10 +6,11 @@
 #include "potion.h"
 
 class character : public cell{
-  int hp, hpMax, atk, stdAtk, def, stdDef;
   std::string race;
   char display;
   item *guard;
+protected:
+  int hp, hpMax, atk, stdAtk, def, stdDef;
 public:
   character(int hp, int hpMax, int atk, int def, std::string race, char display);
 

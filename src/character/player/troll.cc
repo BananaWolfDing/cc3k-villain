@@ -1,3 +1,3 @@
 #include "troll.h"
 
-shade::shade(): character{120, 25, 15, "troll", "@"} {}
+troll::troll(): character{120, 25, 15, "troll", "@"} {}

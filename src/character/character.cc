@@ -31,14 +31,18 @@ item *character::getGuard() const {
 
 void character::addHp(int inc) {
   hp += inc;
+  hp = min(hpMax, hp);
+  hp = max(0, hp);
 }
 
 void character::addAtk(int inc) {
   atk += inc;
+  atk = max(0, atk);
 }
 
 void character::addDef(int inc) {
   def += inc;
+  def = max(0, def);
 }
 
 void character::setGuard(item *treasure) {
