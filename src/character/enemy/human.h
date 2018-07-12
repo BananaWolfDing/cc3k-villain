@@ -2,10 +2,9 @@
 #define HUMAN_H
 
 #include "enemy.h"
-#include "../treasure"
 
 class human : public enemy {
-  void die(character &killer);
+  void die(character &killer) override;
 public:
   human();
 };

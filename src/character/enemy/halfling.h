@@ -2,7 +2,6 @@
 #define HALFLING_H
 
 #include "enemy.h"
-#include "../treasure"
 
 class halfling : public enemy {
 public:

@@ -13,3 +13,5 @@ int merchant::attack(character &defender) {
 bool merchant::isNeutral() const {
   return neutral;
 }
+
+void merchant::die(character) {}

@@ -2,10 +2,10 @@
 #define MERCHANT_H
 
 #include "enemy.h"
-#include "../treasure"
 
 class merchant : public enemy {
   static bool neutral;
+  void die(character &killer) override;
 public:
   dwarf();
   bool isNeutral() const;
