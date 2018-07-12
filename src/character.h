@@ -15,8 +15,6 @@ class character : public cell{
 public:
   Character(int hp, int hpMax, int atk, int def, std::string race, char display);
 
-  int getRow() const;
-  int getCol() const;
   int getHp() const;
   int getAtk() const;
   int getDef() const;
@@ -25,8 +23,6 @@ public:
   std::string getRace() const;
   item *getGuard() const;
 
-  void setRow(int x);
-  void setCol(int y);
   void addHp(int inc);
   void addAtk(int inc);
   void addDef(int inc);
