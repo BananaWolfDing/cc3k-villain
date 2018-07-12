@@ -1,6 +1,6 @@
 #include "halfling.h"
 
-halfling::halfling(): enemy{100, 15, 20, "halfling", 'H'} {}
+halfling::halfling(): enemy{100, 15, 20, "halfling", 'L'} {}
 
 void halfling::defend(character &attacker) {
   if (rand() % 2) {
