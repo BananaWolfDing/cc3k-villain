@@ -7,6 +7,7 @@
 class potion : public item {
 public:
   Potion(std::string name);
+  virtual void use() = 0;
 };
 
 #endif
