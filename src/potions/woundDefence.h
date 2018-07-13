@@ -7,7 +7,6 @@ class woundDefence : public potion {
 public:
   woundDefence();
   void use() override;
-  void unuse() override;
 };
 
 #endif

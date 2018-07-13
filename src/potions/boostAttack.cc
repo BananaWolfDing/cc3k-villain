@@ -9,10 +9,3 @@ void boostAttack::use() {
   else
     PC->addAtk(7);
 }
-
-void boostAttack::unuse() {
-  if (PC->getRace() != "drow")
-    PC->addAtk(-5);
-  else
-    PC->addAtk(-7);
-}

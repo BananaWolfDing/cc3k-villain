@@ -9,10 +9,3 @@ void boostDefence::use() {
   else
     PC->addDef(7);
 }
-
-void boostDefence::unuse() {
-  if (PC->getRace() != "drow")
-    PC->addDef(-5);
-  else
-    PC->addDef(-7);
-}

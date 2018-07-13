@@ -9,10 +9,3 @@ void woundAttack::use() {
   else
     PC->addAtk(-7);
 }
-
-void woundAttack::unuse() {
-  if (PC->getRace() != "drow")
-    PC->addAtk(5);
-  else
-    PC->addAtk(7);
-}

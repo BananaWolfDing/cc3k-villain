@@ -7,7 +7,6 @@ class boostDefence : public potion {
 public:
   boostDefence();
   void use() override;
-  void unuse() override;
 };
 
 #endif
