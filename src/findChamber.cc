@@ -6,25 +6,27 @@ bool chamberType(const char c) {
   return c != ' ' && c != '#' && c != '+' && c != '|' && c != '-';
 }
 
-bool valid(const int x, const int y, const std::vector<std::vector<bool>> &map,
+bool valid(const int x, const int y, const std::vector<std::vector<char>> &map,
            const std::vector<std::vector<bool>> &visited) {
+  int n = map.size();
+  int m = map[0].size();
   return (x >= 0 && x < n) && (y >= 0 && y < m) &&
          (!visited[x][y]) && chamberType(map[x][y]);
 }
 
-void dfs(const int x, const int y, const std::vector<std::vector<bool>> &map,
+void dfs(const int x, const int y, const std::vector<std::vector<char>> &map,
          std::vector<std::vector<bool>> &visited,
          std::vector<std::pair<int, int>> &ans) {
   visited[x][y] = true;
   ans.emplace_back(std::make_pair(x, y));
 
-  if (valid(x - 1, y)) dfs(x - 1, y, ans);
-  if (valid(x + 1, y)) dfs(x + 1, y, ans);
-  if (valid(x, y - 1)) dfs(x, y - 1, ans);
-  if (valid(x, y + 1)) dfs(x, y + 1, ans);
+  if (valid(x - 1, y, map, visited)) dfs(x - 1, y, map, visited, ans);
+  if (valid(x + 1, y, map, visited)) dfs(x + 1, y, map, visited, ans);
+  if (valid(x, y - 1, map, visited)) dfs(x, y - 1, map, visited, ans);
+  if (valid(x, y + 1, map, visited)) dfs(x, y + 1, map, visited, ans);
 }
 
-void findChamber(std::vector<std::vector<bool>> map, std::vector<std::vector<std::pair<int, int>>> &chamber) {
+void findChamber(std::vector<std::vector<char>> map, std::vector<std::vector<std::pair<int, int>>> &chamber) {
   int n = map.size();
   int m = map[0].size();
 
