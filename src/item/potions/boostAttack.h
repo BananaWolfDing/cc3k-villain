@@ -1,7 +1,7 @@
 #ifndef BOOST_ATTACK_H
 #define BOOST_ATTACK_H
 
-#include "../potion.h"
+#include "../../potion.h"
 
 class boostAttack : public potion {
 public:

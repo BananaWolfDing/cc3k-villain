@@ -1,7 +1,7 @@
 #ifndef WOUND_ATTACK_H
 #define WOUND_ATTACK_H
 
-#include "../potion.h"
+#include "../../potion.h"
 
 class woundAttack : public potion {
 public:

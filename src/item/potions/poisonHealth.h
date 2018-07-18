@@ -1,7 +1,7 @@
 #ifndef POISON_HEALTH_H
 #define POISON_HEALTH_H
 
-#include "../potion.h"
+#include "../../potion.h"
 
 class poisonHealth : public potion {
 public:
