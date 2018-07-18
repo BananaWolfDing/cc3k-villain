@@ -11,6 +11,6 @@ std::string item::getName() const {
   return name;
 }
 
-character *getGuardian() const {
-  return guardian;
+void setGuardian(character *guardian) {
+  this->guardian = guardian;
 }

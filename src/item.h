@@ -14,7 +14,7 @@ public:
 
   char getDisplay() const;
   std::string getName() const;
-  character *getGuardian() const;
+  void setGuardian(character *guardian);
 };
 
 #endif
