@@ -15,6 +15,8 @@ public:
   char getDisplay() const;
   std::string getName() const;
   void setGuardian(character *guardian);
+
+  virtual void use() = 0;
 };
 
 #endif

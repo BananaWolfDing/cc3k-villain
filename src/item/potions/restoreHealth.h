@@ -1,7 +1,7 @@
 #ifndef RESTORE_HEALTH_H
 #define RESTORE_HEALTH_H
 
-#include "../potion.h"
+#include "../../potion.h"
 
 class restoreHealth : public potion {
 public:
