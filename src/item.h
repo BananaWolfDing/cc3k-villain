@@ -7,7 +7,6 @@ class character;
 
 class item : public cell {
   std::string name;
-  char display;
   character *guardian;
 public:
   item(std::string name, char display, character *guardian = nullptr);
