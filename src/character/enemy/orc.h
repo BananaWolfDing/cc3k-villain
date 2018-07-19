@@ -3,7 +3,7 @@
 
 #include "enemy.h"
 
-class orcs : public enemy {
+class orc : public enemy {
 public:
   orcs();
 };

@@ -3,7 +3,7 @@
 #include "character.h"
 
 character::character(int hp, int hpMax, int atk, int def, std::string race, char display):
-  hp{hp}, hpMax{hp}, atk{atk}, stdAtk{atk}, def{def}, stdDef{def}, race{race}, display{display} {}
+  hp{hp}, hpMax{hp}, atk{atk}, stdAtk{atk}, def{def}, stdDef{def}, race{race}, display{display}, empty{false} {}
 
 int character::getHp() const {
   return hp;
