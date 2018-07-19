@@ -7,7 +7,6 @@
 
 class character : public cell{
   std::string race;
-  char display;
   item *guard;
 protected:
   int hp, hpMax, atk, stdAtk, def, stdDef;
