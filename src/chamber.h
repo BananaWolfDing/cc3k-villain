@@ -8,9 +8,14 @@
 #include "item/allItems.h"
 
 class chamber {
+  bool playerHere = false;
+  int PCBornRow;
+  int PCBornCol;
   std::vector<std::vector<cell *>> cells;
+  cell *randomCell();
 public:
   void addCell(cell *c);
+  bool playerRoom() const;
   cell *createStair();
 
   cell *createHuman();
@@ -20,6 +25,12 @@ public:
   cell *createOrc();
   cell *createMerchant();
   cell *createDragon(cell *treasure);
+
+  cell *createDrow();
+  cell *createGoblin();
+  cell *createShade();
+  cell *createTroll();
+  cell *createVampire();
 
   cell *createBA();
   cell *createBD();

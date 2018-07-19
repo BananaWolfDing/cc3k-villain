@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include "chamber.h"
 
-cell *randomCell() {
+cell *chamber::randomCell() {
   int n = cells.size();
   if (n == 0)
     return nullptr;
@@ -16,7 +16,7 @@ cell *randomCell() {
 
 cell *randomEmptyCell() {
   cell *c = randomCell();
-  while (!c.getEmpty())
+  while (!c.getEmpty() && (c.getRow() != PCBornRow) || c.getCol() != PCBornCol)
     c = randomCell();
 
   return c;
@@ -56,6 +56,10 @@ cell *dragonHoardCell() {
 
 void chamber::addCell(cell *c) {
   cells.push_back(c);
+}
+
+bool chamber::playerRoom() const {
+  return playerHere;
 }
 
 cell *chamber::createStair() {
@@ -132,6 +136,66 @@ cell *chamber::createDragon(cell *treasure) {
   npc->setCol(c->getCol());
   delete c;
   return npc;
+}
+
+cell *chamber::createDrow() {
+  cell *c = randomEmptyCell();
+  drow *pc = new drow;
+  PCBornRow = c->getRow();
+  PCBornCol = c->getCol();
+  pc->setNeighbour(c->getNeighbour());
+  pc->setRow(PCBornRow);
+  pc->setCol(PCBornCol);
+  playerHere = true;
+  return pc;
+}
+
+cell *chamber::createGoblin() {
+  cell *c = randomEmptyCell();
+  goblin *pc = new goblin;
+  PCBornRow = c->getRow();
+  PCBornCol = c->getCol();
+  pc->setNeighbour(c->getNeighbour());
+  pc->setRow(PCBornRow);
+  pc->setCol(PCBornCol);
+  playerHere = true;
+  return pc;
+}
+
+cell *chamber::createShade() {
+  cell *c = randomEmptyCell();
+  shade *pc = new shade;
+  PCBornRow = c->getRow();
+  PCBornCol = c->getCol();
+  pc->setNeighbour(c->getNeighbour());
+  pc->setRow(PCBornRow);
+  pc->setCol(PCBornCol);
+  playerHere = true;
+  return pc;
+}
+
+cell *chamber::createTroll() {
+  cell *c = randomEmptyCell();
+  troll *pc = new troll;
+  PCBornRow = c->getRow();
+  PCBornCol = c->getCol();
+  pc->setNeighbour(c->getNeighbour());
+  pc->setRow(PCBornRow);
+  pc->setCol(PCBornCol);
+  playerHere = true;
+  return pc;
+}
+
+cell *chamber::createVampire() {
+  cell *c = randomEmptyCell();
+  vampire *pc = new vampire;
+  PCBornRow = c->getRow();
+  PCBornCol = c->getCol();
+  pc->setNeighbour(c->getNeighbour());
+  pc->setRow(PCBornRow);
+  pc->setCol(PCBornCol);
+  playerHere = true;
+  return pc;
 }
 
 cell *chamber::createBA() {

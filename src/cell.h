@@ -1,6 +1,8 @@
 #ifndef CELL_H
 #define CELL_H
 
+class player;
+
 class cell {
   bool stair;
 protected:
@@ -8,8 +10,10 @@ protected:
   char display;
   bool empty;
   std::vector<cell *> neighbour;
+  player *PC;
 public:
   cell(int row, int col, char display = '.');
+  void setPC(player *PC);
   void setStair();
   void setRow(int r);
   void setCol(int c);
