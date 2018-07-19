@@ -4,7 +4,7 @@ goblin::goblin(): character{110, 15, 20, "drow", "@"} {}
 
 int goblin::defend(character &attacker) {
   int damage = 0;
-  if (attacker.getRace() == "orcs")
+  if (attacker.getRace() == "orc")
     damage = max(getHp(), 2 * cell(100 * attacker.getAtk() / (100 + getDef())));
   else
     damage = max(getHp(), cell(100 * attacker.getAtk() / (100 + getDef())));

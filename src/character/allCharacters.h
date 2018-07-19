@@ -10,7 +10,7 @@
 #include "enemy/human.h"
 #include "enemy/dwarf.h"
 #include "enemy/elf.h"
-#include "enemy/orcs.h"
+#include "enemy/orc.h"
 #include "enemy/merchant.h"
 #include "enemy/dragon.h"
 #include "enemy/halfling.h"
