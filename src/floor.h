@@ -13,8 +13,9 @@ class floor {
   std::vector<std::vector<char>> map;
   std::vector<std::vector<cell *>> grid;
   std::vector<chamber *> chambers;
+  std::vector<enemy *> enemies;
   player *PC;
-  void createPlayer(std::string PCRace);
+  void createPlayer(player *PC);
   void createStair();
   void createPotion();
   void createGold();
@@ -24,7 +25,7 @@ class floor {
   std::string PCUsePotion(std::string dir);
   std::string PCAttack(std::string dir);
 public:
-  floor(std::vector<std::vector<char>> map, std::string PCRace);
+  floor(std::vector<std::vector<char>> map, std::string PCRace, player *PC);
   void PCTurn(std::string command);
   void enemyTurn();
 };

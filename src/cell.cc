@@ -29,15 +29,19 @@ void cell::addNeighbour(cell *c) {
   neighbour.push_back(c);
 }
 
-bool cell::getStair() {
+bool cell:isCharacter() const {
+  return isCha;
+}
+
+bool cell::getStair() const {
   return stair;
 }
 
-int cell::getRow() {
+int cell::getRow() const {
   return row;
 }
 
-int cell::getCol() {
+int cell::getCol() const {
   return col;
 }
 

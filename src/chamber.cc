@@ -138,64 +138,14 @@ cell *chamber::createDragon(cell *treasure) {
   return npc;
 }
 
-cell *chamber::createDrow() {
+void chamber::setPC(player *PC) {
   cell *c = randomEmptyCell();
-  drow *pc = new drow;
   PCBornRow = c->getRow();
   PCBornCol = c->getCol();
-  pc->setNeighbour(c->getNeighbour());
-  pc->setRow(PCBornRow);
-  pc->setCol(PCBornCol);
+  PC->setRow(c->getRow());
+  PC->setCol(c->getCol());
+  PC->setNeighbour(c->getNeighbour());
   playerHere = true;
-  return pc;
-}
-
-cell *chamber::createGoblin() {
-  cell *c = randomEmptyCell();
-  goblin *pc = new goblin;
-  PCBornRow = c->getRow();
-  PCBornCol = c->getCol();
-  pc->setNeighbour(c->getNeighbour());
-  pc->setRow(PCBornRow);
-  pc->setCol(PCBornCol);
-  playerHere = true;
-  return pc;
-}
-
-cell *chamber::createShade() {
-  cell *c = randomEmptyCell();
-  shade *pc = new shade;
-  PCBornRow = c->getRow();
-  PCBornCol = c->getCol();
-  pc->setNeighbour(c->getNeighbour());
-  pc->setRow(PCBornRow);
-  pc->setCol(PCBornCol);
-  playerHere = true;
-  return pc;
-}
-
-cell *chamber::createTroll() {
-  cell *c = randomEmptyCell();
-  troll *pc = new troll;
-  PCBornRow = c->getRow();
-  PCBornCol = c->getCol();
-  pc->setNeighbour(c->getNeighbour());
-  pc->setRow(PCBornRow);
-  pc->setCol(PCBornCol);
-  playerHere = true;
-  return pc;
-}
-
-cell *chamber::createVampire() {
-  cell *c = randomEmptyCell();
-  vampire *pc = new vampire;
-  PCBornRow = c->getRow();
-  PCBornCol = c->getCol();
-  pc->setNeighbour(c->getNeighbour());
-  pc->setRow(PCBornRow);
-  pc->setCol(PCBornCol);
-  playerHere = true;
-  return pc;
 }
 
 cell *chamber::createBA() {

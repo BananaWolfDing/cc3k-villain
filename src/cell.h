@@ -5,6 +5,7 @@ class player;
 
 class cell {
   bool stair;
+  bool isCha = false;
 protected:
   int row, col;
   char display;
@@ -20,6 +21,7 @@ public:
   void setNeighbour(std::vector<cell *> n);
   void addNeighbour(cell *c);
 
+  bool isCharacter() const;
   bool getEmpty() const;
   bool getStair() const;
   int getRow() const;

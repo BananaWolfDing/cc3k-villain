@@ -1,4 +1,8 @@
 #include "floor.h"
+#include <cmath>
+#include <ctime>
+#include <cstdlib>
+#include <utility>
 
 void inGrid(int x, int y) {
   return x >= 0 && x < gridHeight && y >= 0 && y < gridWidth;
@@ -30,19 +34,9 @@ void buildGrid(std::vector<std::vector<cell *>> &grid,
     }
 }
 
-void floor::createPlayer() {
+void floor::createPlayer(player *PC) {
   int n = rand() % chamberNum;
-  cell *c;
-
-  switch (PCRace) {
-    case "Drow": c = chambers[n].createDrow();
-    case "Goblin": c = chambers[n].creatGoblin();
-    case "Shade": c = chambers[n].creatShade();
-    case "Troll": c = chambers[n].creatTroll();
-    case "Vampire": c = chambers[n].creatVampire();
-  }
-
-  grid[c->getRow()][c->getCol()] = c;
+  chambers[n].setPC(PC);
 }
 
 void floor::createStair() {
@@ -113,7 +107,8 @@ void floor::createEnemy() {
   }
 }
 
-floor::floor(std::vector<std::vector<char>> map, std::string PCRace): map{map}, freezeEnemy{false} {
+floor::floor(std::vector<std::vector<char>> map, std::string PCRace, player *PC):
+    map{map}, freezeEnemy{false}, PC{PC} {
   std::vector<std::vector<std::pair<int, int>>> chamberCell;
   findChamber(map, chamberCell);
   buildGrid(grid, chamberCell);
@@ -125,7 +120,7 @@ floor::floor(std::vector<std::vector<char>> map, std::string PCRace): map{map}, 
   }
 
   srand(time(NULL));
-  createPlayer();
+  createPlayer(PC);
   createStair();
   createPotion();
   createGold();
@@ -150,7 +145,7 @@ std::string floor::PCMove(std::string dir) {
     PC->setCol(aimY);
     action = "PC moves" + formal[dirIndex(dir)];
   }
-  else if (map[aimX][aimY] == "G") {
+  else if (map[aimX][aimY] == "G" && grid[aimX][aimY]->getGuard() == nullptr) {
     PC->setRow(aimX);
     PC->setCol(aimY);
     action = "PC moves " + formal[dirIndex(dir)] + " and picked some gold worth "
@@ -200,12 +195,36 @@ std::string floor::PCAttack(std::string dir) {
   int y = PC->getCol();
   int aimX = x + XMove[dirIndex(dir)];
   int aimY = y + YMove[dirIndex(dir)];
+  std::string action = "";
 
-  // To be finished
+  if (!inGrid(aimX, aimY))
+    return "Invalid direction!";
+  else if (!grid[aimX][aimY]->isCharacter())
+    return "There is no enemy in " + formal[dirIndex(dir)];
+  else {
+    int damage = PC.attack(*grid[aimX][aimY]);
+    action = "PC attacks " + grid[aimX][aimY]->getRace();
+    if (damage)
+      action += " and deals " + to_string(damage) + " damage";
+    else
+      action += " but missed";
+    if (grid[aimX][aimY]->getHp() == 0) {
+      grid[aimX][aimY]->die();
+      action += " and killed it";
+      for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
+        if (*itr == *grid[aimX][aimY])
+          enemies.erase(itr);
+      delete grid[aimX][aimY];
+    }
+
+    action += "!";
+  }
+
+  return action;
 }
 
 void floor::PCTurn(std::string command) {
-  std::string action;
+  std::string action = "";
 
   if (command == "f") {
     if (freeze)
@@ -229,4 +248,71 @@ void floor::PCTurn(std::string command) {
     else
       action = "Command not found!";
   }
+}
+
+bool enemyCompare(enemy *a, enemy *b) {
+  return (a->getRow() < b->getRow()) ||
+         (a->getRow() == b->getRow() && a->getCol() < b->getCol());
+}
+
+void floor::enemyTurn() {
+  std::string action = "";
+  std::sort(enemies.begin(), enemies.end(), enemyCompare);
+  for (auto itr = enemies.begin(); itr != enemies.end(); itr++) {
+    if (std::abs(PC->getRow() - itr->getRow()) <= 1 &&
+        std::abs(PC->getCol() - itr->getCol()) <= 1) {
+      int damage = itr->attack(*PC);
+      action += itr->getRace() + " attacks PC";
+      if (damage)
+        action += " and deals " + to_string(damage) + " damage."
+      else
+        action += " but missed."
+    }
+    else if (itr->getRace() != "dragon") {
+      if (freezeEnemy()) continue;
+      std::vector<cell *> possibleMoves;
+      int x = itr->getRow();
+      int y = itr->getCol();
+      for (int i = 0; i < 8; i++)
+        if (inGrid(x + XMove[i], y + YMove[i]) && map[x + XMove[i]][y + YMove[i]] == '.')
+          possibleMoves.push_back(grid[x + XMove[i]][y + YMove[i]]);
+
+        int s = possibleMoves.size();
+        if (s) {
+          srand(time(NULL));
+          cell *c = possibleMoves[rand() % s];
+          std::swap(grid[itr->getRow()][itr->getCol()], grid[c->getRow()][c->getCol()]);
+          std::swap(map[itr->getRow()][itr->getCol()], map[c->getRow()][c->getCol()]);
+          int tmpX = c->getRow(), tmpY = c->getCol();
+          c->setRow(itr->getRow());
+          c->setCol(itr->getCol());
+          itr->setRow(tmpX);
+          itr->setCol(tmpY);
+        }
+    }
+    else {
+      if (freezeEnemy()) continue;
+      std::vector<cell *> possibleMoves;
+      for (int i = -1; i <= 1; i++)
+        for (int j = -1; j <= 1; j++) {
+          int x = itr->getGuard()->getRow() + i;
+          int y = itr->getGuard()->getCol() + j;
+          if (inGrid(x, y) && map[x][y] == '.' &&
+              std::abs(x - itr->getRow()) <= 1 && std::abs(y - itr->getCol()) <= 1)
+            possibleMoves.push_back(grid[x + XMove[i]][y + YMove[i]]);
+        }
+
+        int s = possibleMoves.size();
+        if (s) {
+          srand(time(NULL));
+          cell *c = possibleMoves[rand() % s];
+          std::swap(grid[itr->getRow()][itr->getCol()], grid[c->getRow()][c->getCol()]);
+          std::swap(map[itr->getRow()][itr->getCol()], map[c->getRow()][c->getCol()]);
+          int tmpX = c->getRow(), tmpY = c->getCol();
+          c->setRow(itr->getRow());
+          c->setCol(itr->getCol());
+          itr->setRow(tmpX);
+          itr->setCol(tmpY);
+        }
+    }
 }

@@ -6,6 +6,7 @@
 #include "cell.h"
 #include "character/allCharacters.h"
 #include "item/allItems.h"
+#include "character/player.h"
 
 class chamber {
   bool playerHere = false;
@@ -26,11 +27,7 @@ public:
   cell *createMerchant();
   cell *createDragon(cell *treasure);
 
-  cell *createDrow();
-  cell *createGoblin();
-  cell *createShade();
-  cell *createTroll();
-  cell *createVampire();
+  void setPC(player *PC);
 
   cell *createBA();
   cell *createBD();
