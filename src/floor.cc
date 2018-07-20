@@ -316,3 +316,14 @@ void floor::enemyTurn() {
         }
     }
 }
+
+void floor::draw() {
+  for (int i = 0; i < gridHeight; i++) {
+    for (int j = 0; j < gridWidth; j++)
+      if (i == PC->getRow() && j == PC->getCol())
+        std::cout << '@';
+      else
+        std::cout << map[i][j];
+    std::cout << std::endl;
+  }
+}
