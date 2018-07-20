@@ -28,6 +28,7 @@ public:
   floor(std::vector<std::vector<char>> map, std::string PCRace, player *PC);
   void PCTurn(std::string command);
   void enemyTurn();
+  void draw();
 };
 
 #endif
