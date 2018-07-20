@@ -6,11 +6,17 @@
 #include "cell.h"
 #include "character/allCharacters.h"
 #include "item/allItems.h"
+#include "character/player.h"
 
 class chamber {
+  bool playerHere = false;
+  int PCBornRow;
+  int PCBornCol;
   std::vector<std::vector<cell *>> cells;
+  cell *randomCell();
 public:
   void addCell(cell *c);
+  bool playerRoom() const;
   cell *createStair();
 
   cell *createHuman();
@@ -20,6 +26,8 @@ public:
   cell *createOrc();
   cell *createMerchant();
   cell *createDragon(cell *treasure);
+
+  void setPC(player *PC);
 
   cell *createBA();
   cell *createBD();

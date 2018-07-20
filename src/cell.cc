@@ -3,6 +3,10 @@
 cell::cell(int row, int col, char display = '.'):
   row{row}, col{col}, display{display}, stair{false}, empty{true} {}
 
+void setPC(player *PC) {
+  this->PC = PC;
+}
+
 void cell::setStair() {
   stair = true;
   empty = false;
@@ -25,15 +29,19 @@ void cell::addNeighbour(cell *c) {
   neighbour.push_back(c);
 }
 
-bool cell::getStair() {
+bool cell:isCharacter() const {
+  return isCha;
+}
+
+bool cell::getStair() const {
   return stair;
 }
 
-int cell::getRow() {
+int cell::getRow() const {
   return row;
 }
 
-int cell::getCol() {
+int cell::getCol() const {
   return col;
 }
 

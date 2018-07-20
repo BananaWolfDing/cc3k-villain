@@ -12,6 +12,10 @@ std::string goldName(int amount) {
 
 gold::gold(int amount): item{goldName(amount), 'G'}, amount{amount} {}
 
+void gold::getAmount() const {
+  return amount;
+}
+
 void gold::use() {
   PC->addGold(amount);
 }

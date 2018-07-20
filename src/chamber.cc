@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include "chamber.h"
 
-cell *randomCell() {
+cell *chamber::randomCell() {
   int n = cells.size();
   if (n == 0)
     return nullptr;
@@ -16,7 +16,7 @@ cell *randomCell() {
 
 cell *randomEmptyCell() {
   cell *c = randomCell();
-  while (!c.getEmpty())
+  while (!c.getEmpty() && (c.getRow() != PCBornRow) || c.getCol() != PCBornCol)
     c = randomCell();
 
   return c;
@@ -56,6 +56,10 @@ cell *dragonHoardCell() {
 
 void chamber::addCell(cell *c) {
   cells.push_back(c);
+}
+
+bool chamber::playerRoom() const {
+  return playerHere;
 }
 
 cell *chamber::createStair() {
@@ -132,6 +136,16 @@ cell *chamber::createDragon(cell *treasure) {
   npc->setCol(c->getCol());
   delete c;
   return npc;
+}
+
+void chamber::setPC(player *PC) {
+  cell *c = randomEmptyCell();
+  PCBornRow = c->getRow();
+  PCBornCol = c->getCol();
+  PC->setRow(c->getRow());
+  PC->setCol(c->getCol());
+  PC->setNeighbour(c->getNeighbour());
+  playerHere = true;
 }
 
 cell *chamber::createBA() {
