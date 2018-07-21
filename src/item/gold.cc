@@ -1,4 +1,5 @@
 #include "gold.h"
+#include "../character/player/player.h"
 
 std::string goldName(int amount) {
   switch (amount) {
@@ -12,7 +13,7 @@ std::string goldName(int amount) {
 
 gold::gold(int amount): item{goldName(amount), 'G'}, amount{amount} {}
 
-void gold::getAmount() const {
+int gold::getAmount() const {
   return amount;
 }
 

@@ -1,8 +1,8 @@
 #include "vampire.h"
 
-vampire::vampire(): character{50, 25, 25, "vampire", "@"} {}
+vampire::vampire(): player{50, 25, 25, "vampire", '@'} {}
 
-void vampire::addHP(int inc) {
+void vampire::addHp(int inc) {
   hp += inc;
 }
 

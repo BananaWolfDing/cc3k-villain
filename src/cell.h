@@ -1,7 +1,9 @@
 #ifndef CELL_H
 #define CELL_H
 
+#include <vector>
 class player;
+class enemy;
 
 class cell {
   bool stair;
@@ -27,6 +29,15 @@ public:
   int getRow() const;
   int getCol() const;
   std::vector<cell *> getNeighbour() const;
+
+  enemy *getGuardian() const {return nullptr}
+  int getAmount() const {return 0}
+  std::string getName() const {return "";}
+  void use() const {}
+  std::string getRace() const {return "";}
+  int getHp() const {return 0;}
+  void die() const {}
+  void setGuardian() {}
 };
 
 #endif

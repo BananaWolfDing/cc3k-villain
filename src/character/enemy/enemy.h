@@ -4,7 +4,7 @@
 #include "character.h"
 
 class enemy : public character {
-  virtual void die(character &dead);
+  virtual void die(player &killer);
 public:
   enemy(int maxHp, int atk, int def, std::string race, char display);
 };

@@ -1,11 +1,14 @@
 #include "merchant.h"
-
-merchant::merchant(): enemy{30, 70, 5, "Merchant", "M"}, isNeutral{true} {}
+#include <cstdlib>
+#include <ctime>
+merchant::merchant(): enemy{30, 70, 5, "Merchant", 'M'}, isNeutral{true} {}
 
 int merchant::attack(character &defender) {
-  if (!isNeutral)
+  if (!isNeutral) {
+    srand(time(NULL));
     if (rand() % 2)
       return defender.defend(*this);
+  }
 
   return 0;
 }
