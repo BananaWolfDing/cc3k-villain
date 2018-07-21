@@ -1,5 +1,5 @@
 #include "boostAttack.h"
-#include "../character.h"
+#include "../../character/allCharacters.h"
 
 boostAttack::boostAttack(): potion{"boostAttack"} {}
 
