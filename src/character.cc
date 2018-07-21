@@ -32,18 +32,18 @@ item *character::getGuard() const {
 
 void character::addHp(int inc) {
   hp += inc;
-  hp = min(hpMax, hp);
-  hp = max(0, hp);
+  hp = std::min(hpMax, hp);
+  hp = std::max(0, hp);
 }
 
 void character::addAtk(int inc) {
   atk += inc;
-  atk = max(0, atk);
+  atk = std::max(0, atk);
 }
 
 void character::addDef(int inc) {
   def += inc;
-  def = max(0, def);
+  def = std::max(0, def);
 }
 
 void character::setGuard(item *treasure) {
@@ -55,7 +55,7 @@ int character::attack(character &defender) {
 }
 
 int character::defend(character &attacker) {
-  int damage = max(getHp(), cell(100 * attacker.getAtk() / (100 + getDef())));
+  int damage = std::max(getHp(), (int) ceil(100 * attacker.getAtk() / (100 + getDef())));
   addHp(-damage);
   return damage;
 }

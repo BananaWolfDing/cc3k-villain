@@ -10,3 +10,7 @@ int player::getGold() const {
 void player::setGold(int gold) {
   this->gold = gold;
 }
+
+void player::addGold(int gold) {
+  this->gold += gold;
+}

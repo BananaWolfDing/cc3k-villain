@@ -1,11 +1,11 @@
 #include "dragon.h"
 
-dragon::dragon(cell *guard): enemy{150, 20, 20, "dragon", 'D'} {
+dragon::dragon(item *guard): enemy{150, 20, 20, "dragon", 'D'} {
   this->guard = guard;
-  guard->setGuardian(this);
+  this->guard->setGuardian(this);
 }
 
 void dragon::die(character) {
-  this->guard->guard = nullptr;
+  this->guard->setGuardian(nullptr);
   this->guard = nullptr;
 }

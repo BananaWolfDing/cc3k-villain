@@ -3,7 +3,7 @@
 item::item(std::string name, char display, character *guardian = nullptr):
   name{name}, display{display}, guardian{guardian}, empty{false} {}
 
-void item::getDisplay() const {
+char item::getDisplay() const {
   return display;
 }
 
@@ -11,6 +11,10 @@ std::string item::getName() const {
   return name;
 }
 
-void item::setGuardian(character *guardian) {
+void item::setGuardian(enemy *guardian) {
   this->guardian = guardian;
+}
+
+enemy *item::getGuardian() const{
+  return guardian;
 }

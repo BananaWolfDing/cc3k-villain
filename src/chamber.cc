@@ -3,26 +3,29 @@
 #include <cstdio>
 #include <cstdlib>
 #include "chamber.h"
+#include "cell.h"
 
 cell *chamber::randomCell() {
   int n = cells.size();
   if (n == 0)
     return nullptr;
   else {
-    srand(time(NULL));
-    return cells[rand() % n];
+    else {
+      srand(time(NULL));
+      return cells[rand() % n];
+    }
   }
 }
 
-cell *randomEmptyCell() {
+cell *chamber::randomEmptyCell() {
   cell *c = randomCell();
-  while (!c.getEmpty() && (c.getRow() != PCBornRow) || c.getCol() != PCBornCol)
+  while (!c->getEmpty() && (c->getRow() != PCBornRow) || c->getCol() != PCBornCol)
     c = randomCell();
 
   return c;
 }
 
-cell *dragonCell(cell *treasure) {
+cell *chamber::dragonCell(cell *treasure) {
   std::vector<cell *> nearby = treasure->getNeighbour();
   srand(time(NULL));
   int n = nearby.size();
@@ -31,21 +34,21 @@ cell *dragonCell(cell *treasure) {
     return nullptr;
   else {
     int m = rand() % n;
-    while (!nearby[m].getEmpty())
+    while (!nearby[m]->getEmpty())
       m = rand() % n;
     return nearby[m];
   }
 }
 
-bool validDragonHoardCell(cell *c) {
+bool chamber::validDragonHoardCell(cell *c) {
   std::vector<cell *> nearby = c->getNeighbour();
   for (auto itr = nearby.begin(); itr != nearby.end(); itr++)
-    if (itr->getEmpty()) return true;
+    if ((*itr)->getEmpty()) return true;
 
   return false;
 }
 
-cell *dragonHoardCell() {
+cell *chamber::dragonHoardCell() {
   cell *c = randomEmptyCell();
 
   while (validDragonHoardCell(c))
@@ -64,7 +67,7 @@ bool chamber::playerRoom() const {
 
 cell *chamber::createStair() {
   cell *c = randomEmptyCell();
-  c.setStair();
+  c->setStair();
   return c;
 }
 
@@ -129,7 +132,7 @@ cell *chamber::createMerchant() {
 }
 
 cell *chamber::createDragon(cell *treasure) {
-  cell *c = randomDragonCell();
+  cell *c = dragonCell(treasure);
   dragon *npc = new dragon(treasure);
   npc->setNeighbour(c->getNeighbour());
   npc->setRow(c->getRow());

@@ -1,11 +1,11 @@
-#ifndef ORCS_H
-#define ORCS_H
+#ifndef ORC_H
+#define ORC_H
 
 #include "enemy.h"
 
 class orc : public enemy {
 public:
-  orcs();
+  orc();
 };
 
 #endif

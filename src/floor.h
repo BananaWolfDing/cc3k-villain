@@ -8,13 +8,15 @@
 #include "config.h"
 #include "cell.h"
 #include "findChamber.h"
+#include "chamber.h"
+
+class player;
 
 class floor {
   std::vector<std::vector<char>> map;
   std::vector<std::vector<cell *>> grid;
   std::vector<chamber *> chambers;
   std::vector<enemy *> enemies;
-  player *PC;
   void createPlayer(player *PC);
   void createStair();
   void createPotion();
@@ -24,11 +26,12 @@ class floor {
   std::string PCMove(std::string dir);
   std::string PCUsePotion(std::string dir);
   std::string PCAttack(std::string dir);
+  player *PC;
 public:
   floor(std::vector<std::vector<char>> map, std::string PCRace, player *PC);
   void PCTurn(std::string command);
   void enemyTurn();
-  void draw();
+  void paint() const;
 };
 
 #endif

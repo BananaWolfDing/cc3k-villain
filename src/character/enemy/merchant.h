@@ -7,7 +7,7 @@ class merchant : public enemy {
   static bool neutral;
   void die(character &killer) override;
 public:
-  dwarf();
+  merchant();
   bool isNeutral() const;
   int attack(character &defender) override;
 };
