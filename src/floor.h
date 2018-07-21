@@ -29,7 +29,9 @@ class floor {
   player *PC;
   int whichFloor;
 public:
-  floor(std::vector<std::vector<char>> map, std::string PCRace, player *PC, int floorNum);
+  floor(std::vector<std::vector<char>> map, player *PC, int floorNum);
+  ~floor();
+  bool passedFloor() const;
   void PCTurn(std::string command);
   void enemyTurn();
   void paint() const;
