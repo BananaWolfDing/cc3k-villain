@@ -1,6 +1,7 @@
 #include "goblin.h"
 #include <algorithm>
 #include <cmath>
+
 goblin::goblin(): player{110, 15, 20, "drow", '@'} {}
 
 int goblin::defend(cell &attacker) {

@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 
-void gameOver() {
+inline void gameOver() {
   std::cout << "You lose" << std::endl;
 }
 
@@ -23,15 +23,15 @@ int main() {
       PC = new goblin;
       break;
     }
-    else if (race == "shade") {
+    else if (race == "Shade") {
       PC = new shade;
       break;
     }
-    else if (race == "troll") {
+    else if (race == "Troll") {
       PC = new troll;
       break;
     }
-    else if (race == "vampire") {
+    else if (race == "Vampire") {
       PC = new vampire;
       break;
     }
@@ -41,6 +41,7 @@ int main() {
   std::string command;
   for (int curFloor = 1; curFloor <= 5; curFloor++) {
     floor gameFloor(readMap("map.txt"), PC, curFloor);
+    gameFloor.paint("New floor!");
     while (std::getline(std::cin, command)) {
       std::string action = gameFloor.PCTurn(command);
       if (command == "?") continue;

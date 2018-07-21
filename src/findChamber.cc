@@ -2,11 +2,11 @@
 #include <utility>
 #include "findChamber.h"
 
-bool chamberType(const char c) {
+inline bool chamberType(const char c) {
   return c != ' ' && c != '#' && c != '+' && c != '|' && c != '-';
 }
 
-bool valid(const int x, const int y, const std::vector<std::vector<char>> &map,
+inline bool valid(const int x, const int y, const std::vector<std::vector<char>> &map,
            const std::vector<std::vector<bool>> &visited) {
   int n = map.size();
   int m = map[0].size();
@@ -14,7 +14,7 @@ bool valid(const int x, const int y, const std::vector<std::vector<char>> &map,
          (!visited[x][y]) && chamberType(map[x][y]);
 }
 
-void dfs(const int x, const int y, const std::vector<std::vector<char>> &map,
+inline void dfs(const int x, const int y, const std::vector<std::vector<char>> &map,
          std::vector<std::vector<bool>> &visited,
          std::vector<std::pair<int, int>> &ans) {
   visited[x][y] = true;

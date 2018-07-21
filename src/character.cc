@@ -10,8 +10,6 @@ character::character(int hp, int atk, int def, std::string race, char display):
     this->isCha = true;
 }
 
-
-
 int character::getHp() const {
   return hp;
 }

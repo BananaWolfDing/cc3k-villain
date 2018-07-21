@@ -10,10 +10,6 @@ char item::getDisplay() const {
   return display;
 }
 
-std::string item::getName() const {
-  return name;
-}
-
 void item::setGuardian(enemy *guardian) {
   this->guardian = guardian;
 }

@@ -1,0 +1,75 @@
+cmake_minimum_required(VERSION 3.10)
+project(cc3k_villain)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(src)
+include_directories(src/character)
+include_directories(src/character/enemy)
+include_directories(src/character/player)
+include_directories(src/item)
+include_directories(src/item/potions)
+
+add_executable(cc3k_villain
+        src/character/enemy/dragon.cc
+        src/character/enemy/dragon.h
+        src/character/enemy/dwarf.cc
+        src/character/enemy/dwarf.h
+        src/character/enemy/elf.cc
+        src/character/enemy/elf.h
+        src/character/enemy/enemy.cc
+        src/character/enemy/enemy.h
+        src/character/enemy/halfling.cc
+        src/character/enemy/halfling.h
+        src/character/enemy/human.cc
+        src/character/enemy/human.h
+        src/character/enemy/merchant.cc
+        src/character/enemy/merchant.h
+        src/character/enemy/orc.cc
+        src/character/enemy/orc.h
+        src/character/player/drow.cc
+        src/character/player/drow.h
+        src/character/player/goblin.cc
+        src/character/player/goblin.h
+        src/character/player/player.cc
+        src/character/player/player.h
+        src/character/player/shade.cc
+        src/character/player/shade.h
+        src/character/player/troll.cc
+        src/character/player/troll.h
+        src/character/player/vampire.cc
+        src/character/player/vampire.h
+        src/character/allCharacters.h
+        src/item/potions/boostAttack.cc
+        src/item/potions/boostAttack.h
+        src/item/potions/boostDefence.cc
+        src/item/potions/boostDefence.h
+        src/item/potions/poisonHealth.cc
+        src/item/potions/poisonHealth.h
+        src/item/potions/restoreHealth.cc
+        src/item/potions/restoreHealth.h
+        src/item/potions/woundAttack.cc
+        src/item/potions/woundAttack.h
+        src/item/potions/woundDefence.cc
+        src/item/potions/woundDefence.h
+        src/item/allItems.h
+        src/item/gold.cc
+        src/item/gold.h
+        src/cell.cc
+        src/cell.h
+        src/chamber.cc
+        src/chamber.h
+        src/character.cc
+        src/character.h
+        src/config.h
+        src/findChamber.cc
+        src/findChamber.h
+        src/floor.cc
+        src/floor.h
+        src/item.cc
+        src/item.h
+        src/main.cc
+        src/potion.cc
+        src/potion.h
+        src/readMap.cc
+        src/readMap.h)

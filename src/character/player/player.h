@@ -11,6 +11,7 @@ public:
   int getGold() const;
   void setGold(int gold);
   void addGold(int gold);
+  void die(player &) {}
 };
 
 #endif

@@ -1,5 +1,4 @@
 #include "woundAttack.h"
-#include "../../character.h"
 
 woundAttack::woundAttack(): potion{"woundAttack"} {}
 

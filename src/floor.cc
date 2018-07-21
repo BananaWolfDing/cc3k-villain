@@ -1,4 +1,6 @@
 #include "floor.h"
+#include "findChamber.h"
+#include "config.h"
 #include <cmath>
 #include <ctime>
 #include <cstdlib>
@@ -7,16 +9,16 @@
 #include <sstream>
 #include <iostream>
 
-bool inGrid(int x, int y) {
+inline bool inGrid(int x, int y) {
   return x >= 0 && x < gridHeight && y >= 0 && y < gridWidth;
 }
 
-void linkCells(cell *x, cell *y) {
+inline void linkCells(cell *x, cell *y) {
   x->addNeighbour(y);
   y->addNeighbour(x);
 }
 
-void buildGrid(std::vector<std::vector<cell *>> &grid,
+inline void buildGrid(std::vector<std::vector<cell *>> &grid,
          const std::vector<std::vector<std::pair<int, int>>> chambers, player *PC) {
   for (int i = 0; i < chamberNum; i++) {
     int n = chambers[i].size();
@@ -198,11 +200,12 @@ std::string floor::PCUsePotion(std::string dir) {
   else if (map[aimX][aimY] != 'P')
     return "There is no potion in " + formal[dirIndex(dir)];
   else {
+    std::string p = grid[aimX][aimY]->getName();
     grid[aimX][aimY]->use();
     delete grid[aimX][aimY];
     grid[aimX][aimY] = new cell(aimX, aimY);
+    return "PC uses " + p;
   }
-
 }
 
 std::string floor::PCAttack(std::string dir) {
@@ -267,7 +270,7 @@ std::string floor::PCTurn(std::string command) {
   return action;
 }
 
-bool enemyCompare(cell *a, cell *b) {
+inline bool enemyCompare(cell *a, cell *b) {
   return (a->getRow() < b->getRow()) ||
          (a->getRow() == b->getRow() && a->getCol() < b->getCol());
 }

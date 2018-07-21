@@ -7,7 +7,6 @@
 class potion : public item {
 public:
   potion(std::string name);
-  void use() override;
 };
 
 #endif
