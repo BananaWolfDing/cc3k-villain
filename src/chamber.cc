@@ -9,10 +9,10 @@ cell *chamber::randomCell() {
   int n = cells.size();
   if (n == 0)
     return nullptr;
-    else {
-      srand(time(NULL));
-      return cells[rand() % n];
-    }
+  else {
+    srand(time(NULL));
+    return cells[rand() % n];
+  }
 }
 
 cell *chamber::randomEmptyCell() {
