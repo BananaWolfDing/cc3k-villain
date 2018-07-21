@@ -27,8 +27,9 @@ class floor {
   std::string PCUsePotion(std::string dir);
   std::string PCAttack(std::string dir);
   player *PC;
+  int whichFloor;
 public:
-  floor(std::vector<std::vector<char>> map, std::string PCRace, player *PC);
+  floor(std::vector<std::vector<char>> map, std::string PCRace, player *PC, int floorNum);
   void PCTurn(std::string command);
   void enemyTurn();
   void paint() const;

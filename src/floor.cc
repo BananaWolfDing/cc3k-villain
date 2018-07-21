@@ -110,8 +110,8 @@ void floor::createEnemy() {
   }
 }
 
-floor::floor(std::vector<std::vector<char>> map, std::string PCRace, player *PC):
-    map{map}, freezeEnemy{false}, PC{PC} {
+floor::floor(std::vector<std::vector<char>> map, std::string PCRace, player *PC, int floorNum):
+    map{map}, freezeEnemy{false}, PC{PC}, whichFloor{floorNum} {
   std::vector<std::vector<std::pair<int, int>>> chamberCell;
   findChamber(map, chamberCell);
   buildGrid(grid, chamberCell, PC);
@@ -143,7 +143,8 @@ std::string floor::PCMove(std::string dir) {
   if (map[aimX][aimY] == '-' || map[aimX][aimY] == '|' || map[aimX][aimY] == ' ')
     return "Way blocked by wall!";
 
-  if (map[aimX][aimY] == '+' || map[aimX][aimY] == '#' || map[aimX][aimY] == '.') {
+  if (map[aimX][aimY] == '+' || map[aimX][aimY] == '#'
+   || map[aimX][aimY] == '.' || map[aimX][aimY] == '\\') {
     PC->setRow(aimX);
     PC->setCol(aimY);
     action = "PC moves" + formal[dirIndex(dir)];
@@ -338,7 +339,7 @@ void floor::enemyTurn() {
   }
 }
 
-void floor::paint() const {
+void floor::paint(std::string action) const {
   for (int i = 0; i < gridHeight; i++) {
     for (int j = 0; j < gridWidth; j++)
       if (i == PC->getRow() && j == PC->getCol())
@@ -347,4 +348,11 @@ void floor::paint() const {
         std::cout << map[i][j];
     std::cout << std::endl;
   }
+
+  std::cout << "Race: " << PC->getRace() << "   Gold: " << PC->getGold()
+            << "                        Floor: " << whichFloor << std::endl;
+  std::cout << "HP: " << PC->getHp() << std::endl;
+  std::cout << "Atk: " << PC->getAtk() << std::endl;
+  std::cout << "Def: " << PC->getDef() << std::endl;
+  std::cout << "Action: " << action << std::endl;
 }

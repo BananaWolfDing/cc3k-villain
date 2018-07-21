@@ -5,7 +5,7 @@
 #include <string>
 
 class player : public character {
-  int gold;
+  int gold = 0;
 public:
   player(int hpMax, int atk, int def, std::string race, char display);
   int getGold() const;
