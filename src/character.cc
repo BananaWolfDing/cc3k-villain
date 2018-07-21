@@ -6,6 +6,8 @@ character::character(int hp, int hpMax, int atk, int def, std::string race, char
   hp{hp}, hpMax{hp}, atk{atk}, stdAtk{atk}, def{def}, stdDef{def},
   race{race}, display{display}, empty{false}, isCha{true} {}
 
+
+
 int character::getHp() const {
   return hp;
 }

@@ -17,4 +17,4 @@ bool merchant::isNeutral() const {
   return neutral;
 }
 
-void merchant::die(character) {}
+void merchant::die(character& killer) {}
