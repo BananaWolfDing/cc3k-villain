@@ -10,11 +10,9 @@ cell *chamber::randomCell() {
   if (n == 0)
     return nullptr;
   else {
-    else {
       srand(time(NULL));
       return cells[rand() % n];
     }
-  }
 }
 
 cell *chamber::randomEmptyCell() {
