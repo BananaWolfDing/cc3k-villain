@@ -4,17 +4,19 @@
 #include "item/allItems.h"
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
 inline void gameOver() {
   std::cout << "You lose" << std::endl;
 }
 
 int main() {
+  srand((unsigned)time(NULL));
   std::cout << "Hello, welcome to CC3K...(we will add some words here later)" << std::endl;
   std::cout << "First, choose your race among Drow, Goblin, Shade, Troll and Vampire" << std::endl;
-  std::string race;
+  std::string race = "Drow";
   player *PC;
-  while (std::getline(std::cin, race))
+  while (true)//std::getline(std::cin, race))
     if (race == "Drow") {
       PC = new drow;
       break;

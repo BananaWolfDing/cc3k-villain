@@ -31,6 +31,18 @@ void cell::addNeighbour(cell *c) {
   neighbour.push_back(c);
 }
 
+void cell::removeNeighbour(cell *c) {
+  for (auto itr = neighbour.begin(); itr != neighbour.end(); itr++)
+    if (*itr == c) {
+      neighbour.erase(itr);
+      break;
+    }
+}
+
+player *cell::getPC() const {
+  return PC;
+}
+
 bool cell::isCharacter() const {
   return isCha;
 }
