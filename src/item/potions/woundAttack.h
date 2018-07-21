@@ -2,6 +2,7 @@
 #define WOUND_ATTACK_H
 
 #include "../../potion.h"
+#include "../../character/player/player.h"
 
 class woundAttack : public potion {
 public:

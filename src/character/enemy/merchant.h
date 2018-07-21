@@ -4,12 +4,12 @@
 #include "enemy.h"
 
 class merchant : public enemy {
-  static bool neutral;
-  void die(character &killer) override;
+  bool neutral = true;
 public:
   merchant();
   bool isNeutral() const;
-  int attack(character &defender) override;
+  int attack(cell &defender) override;
+  void die(player &PC) override;
 };
 
 #endif

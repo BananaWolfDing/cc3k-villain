@@ -2,20 +2,24 @@
 #define CELL_H
 
 #include <vector>
+#include <string>
+
 class player;
 class enemy;
+class character;
 
 class cell {
   bool stair;
-  bool isCha = false;
 protected:
   int row, col;
   char display;
   bool empty;
+  bool isCha = false;
   std::vector<cell *> neighbour;
   player *PC;
 public:
   cell(int row, int col, char display = '.');
+  cell();
   void setPC(player *PC);
   void setStair();
   void setRow(int r);
@@ -30,14 +34,18 @@ public:
   int getCol() const;
   std::vector<cell *> getNeighbour() const;
 
-  enemy *getGuardian() const {return nullptr}
-  int getAmount() const {return 0}
+  enemy *getGuardian() const {return nullptr;}
+  int getAmount() const {return 0;}
   std::string getName() const {return "";}
   void use() const {}
   std::string getRace() const {return "";}
   int getHp() const {return 0;}
-  void die() const {}
-  void setGuardian() {}
+  void die(player &) const {}
+  void setGuardian(enemy *) {}
+  int getAtk() const {return 0;}
+  int defend(cell &) {return 0;}
+  int attack(character &) {return 0;}
+  cell *getGuard() const {return nullptr;}
 };
 
 #endif

@@ -6,7 +6,7 @@
 class halfling : public enemy {
 public:
   halfling();
-  int defend(character &attacker) override;
+  int defend(cell &attacker) override;
 };
 
 #endif

@@ -1,7 +1,9 @@
 #include "cell.h"
 
-cell::cell(int row, int col, char display = '.'):
+cell::cell(int row, int col, char display):
   row{row}, col{col}, display{display}, stair{false}, empty{true} {}
+
+cell::cell() {}
 
 void cell::setPC(player *PC) {
   this->PC = PC;

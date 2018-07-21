@@ -5,9 +5,9 @@
 #include "../../item/gold.h"
 
 class dragon : public enemy {
-  void die(character &killer) override;
 public:
-  dragon(item *guard);
+  dragon(cell *guard);
+  void die(player &killer) override;
 };
 
 #endif
