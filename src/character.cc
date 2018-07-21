@@ -2,9 +2,13 @@
 #include <cmath>
 #include "character.h"
 
-character::character(int hp, int hpMax, int atk, int def, std::string race, char display):
+character::character(int hp, int atk, int def, std::string race, char display):
   hp{hp}, hpMax{hp}, atk{atk}, stdAtk{atk}, def{def}, stdDef{def},
-  race{race}, display{display}, empty{false}, isCha{true} {}
+  race{race} {
+    this->display = display;
+    this->empty = false;
+    this->isCha = true;
+}
 
 
 
@@ -20,15 +24,11 @@ int character::getDef() const {
   return def;
 }
 
-char character::getDisplay() const {
-  return display;
-}
-
 std::string character::getRace() const {
   return race;
 }
 
-item *character::getGuard() const {
+cell *character::getGuard() const {
   return guard;
 }
 
@@ -52,11 +52,11 @@ void character::setGuard(item *treasure) {
   guard = treasure;
 }
 
-int character::attack(character &defender) {
+int character::attack(cell &defender) {
   return defender.defend(*this);
 }
 
-int character::defend(character &attacker) {
+int character::defend(cell &attacker) {
   int damage = std::max(getHp(), (int) ceil(100 * attacker.getAtk() / (100 + getDef())));
   addHp(-damage);
   return damage;

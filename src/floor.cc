@@ -107,6 +107,7 @@ void floor::createEnemy() {
       c = chambers[n]->createMerchant();
 
     grid[c->getRow()][c->getCol()] = c;
+    enemies.push_back(c);
   }
 }
 
@@ -118,7 +119,7 @@ floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum):
   for (int i = 0; i < chamberNum; i++) {
     chamber *cham = new chamber;
     for (auto itr = chamberCell[i].begin(); itr != chamberCell[i].end(); itr++)
-      cham->addCell(grid[(*itr)->getRow()][(*itr)->getCol()]);
+      cham->addCell(grid[itr->first][itr->second]);
     chambers.push_back(cham);
   }
 
@@ -163,7 +164,7 @@ std::string floor::PCMove(std::string dir) {
     PC->setRow(aimX);
     PC->setCol(aimY);
     action = "PC moves " + formal[dirIndex(dir)] + " and picked some gold worth "
-           + grid[aimX][aimY]->getAmount();
+           + std::to_string(grid[aimX][aimY]->getAmount());
 
     delete grid[aimX][aimY];
     grid[aimX][aimY]= new cell(aimX, aimY);
@@ -223,10 +224,10 @@ std::string floor::PCAttack(std::string dir) {
     else
       action += " but missed";
     if (grid[aimX][aimY]->getHp() == 0) {
-      grid[aimX][aimY]->die();
+      grid[aimX][aimY]->die(*PC);
       action += " and killed it";
       for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
-        if (*itr == *grid[aimX][aimY])
+        if (*itr == grid[aimX][aimY])
           enemies.erase(itr);
       delete grid[aimX][aimY];
     }
@@ -237,7 +238,7 @@ std::string floor::PCAttack(std::string dir) {
   return action;
 }
 
-void floor::PCTurn(std::string command) {
+std::string floor::PCTurn(std::string command) {
   std::string action = "";
 
   if (command == "f") {
@@ -262,9 +263,11 @@ void floor::PCTurn(std::string command) {
     else
       action = "?";
   }
+
+  return action;
 }
 
-bool enemyCompare(enemy *a, enemy *b) {
+bool enemyCompare(cell *a, cell *b) {
   return (a->getRow() < b->getRow()) ||
          (a->getRow() == b->getRow() && a->getCol() < b->getCol());
 }

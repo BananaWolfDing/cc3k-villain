@@ -6,7 +6,7 @@
 class goblin : public player {
 public:
   goblin();
-  int defend(character &attacker) override;
+  int defend(cell &attacker) override;
 };
 
 #endif

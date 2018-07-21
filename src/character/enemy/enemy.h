@@ -1,12 +1,12 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include "../../character.h"
+#include "../player/player.h"
 
 class enemy : public character {
-  virtual void die(player &killer);
 public:
-	enemy(int maxHp, int atk, int def, std::string race, char display);
+  enemy(int maxHp, int atk, int def, std::string race, char display);
+  virtual void die(player &killer);
 };
 
 #endif
