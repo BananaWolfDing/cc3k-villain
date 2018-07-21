@@ -110,15 +110,15 @@ void floor::createEnemy() {
   }
 }
 
-floor::floor(std::vector<std::vector<char>> map, std::string PCRace, player *PC):
-    map{map}, freezeEnemy{false}, PC{PC} {
+floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum):
+    map{map}, freezeEnemy{false}, PC{PC}, whichFloor{floorNum} {
   std::vector<std::vector<std::pair<int, int>>> chamberCell;
   findChamber(map, chamberCell);
   buildGrid(grid, chamberCell, PC);
   for (int i = 0; i < chamberNum; i++) {
     chamber *cham = new chamber;
     for (auto itr = chamberCell[i].begin(); itr != chamberCell[i].end(); itr++)
-      cham->addCell(new cell(itr->first, itr->second));
+      cham->addCell(grid[(*itr)->getRow()][(*itr)->getCol()]);
     chambers.push_back(cham);
   }
 
@@ -128,6 +128,16 @@ floor::floor(std::vector<std::vector<char>> map, std::string PCRace, player *PC)
   createPotion();
   createGold();
   createEnemy();
+}
+
+floor::~floor() {
+  for (int i = 0; i < gridHeight; i++)
+    for (int j = 0; j < gridWidth; j++)
+      delete grid[i][j];
+}
+
+bool floor::passedFloor() const {
+  return map[PC->getRow()][PC->getCol()] == '\\';
 }
 
 std::string floor::PCMove(std::string dir) {
@@ -143,7 +153,8 @@ std::string floor::PCMove(std::string dir) {
   if (map[aimX][aimY] == '-' || map[aimX][aimY] == '|' || map[aimX][aimY] == ' ')
     return "Way blocked by wall!";
 
-  if (map[aimX][aimY] == '+' || map[aimX][aimY] == '#' || map[aimX][aimY] == '.') {
+  if (map[aimX][aimY] == '+' || map[aimX][aimY] == '#'
+   || map[aimX][aimY] == '.' || map[aimX][aimY] == '\\') {
     PC->setRow(aimX);
     PC->setCol(aimY);
     action = "PC moves" + formal[dirIndex(dir)];
@@ -187,9 +198,8 @@ std::string floor::PCUsePotion(std::string dir) {
     return "There is no potion in " + formal[dirIndex(dir)];
   else {
     grid[aimX][aimY]->use();
-    cell *c = new cell(aimX, aimY);
     delete grid[aimX][aimY];
-    grid[aimX][aimY] = c;
+    grid[aimX][aimY] = new cell(aimX, aimY);
   }
 
 }
@@ -250,7 +260,7 @@ void floor::PCTurn(std::string command) {
     else if (movement == "a")
       action = PCAttack(dir);
     else
-      action = "Command not found!";
+      action = "?";
   }
 }
 
@@ -338,7 +348,7 @@ void floor::enemyTurn() {
   }
 }
 
-void floor::paint() const {
+void floor::paint(std::string action) const {
   for (int i = 0; i < gridHeight; i++) {
     for (int j = 0; j < gridWidth; j++)
       if (i == PC->getRow() && j == PC->getCol())
@@ -347,4 +357,11 @@ void floor::paint() const {
         std::cout << map[i][j];
     std::cout << std::endl;
   }
+
+  std::cout << "Race: " << PC->getRace() << "   Gold: " << PC->getGold()
+            << "                        Floor: " << whichFloor << std::endl;
+  std::cout << "HP: " << PC->getHp() << std::endl;
+  std::cout << "Atk: " << PC->getAtk() << std::endl;
+  std::cout << "Def: " << PC->getDef() << std::endl;
+  std::cout << "Action: " << action << std::endl;
 }
