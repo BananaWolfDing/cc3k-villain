@@ -15,6 +15,6 @@ void item::setGuardian(enemy *guardian) {
   this->guardian = guardian;
 }
 
-enemy *item::getGuardian() const{
+enemy *item::getGuardian() const  {
   return guardian;
 }

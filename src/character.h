@@ -5,6 +5,7 @@
 #include <string>
 #include "potion.h"
 #include "cell.h"
+#include "character\allCharacters.h"
 
 class character : public cell{
   std::string race;
@@ -12,7 +13,7 @@ protected:
   int hp, hpMax, atk, stdAtk, def, stdDef;
   item *guard;
 public:
-  character(int hp, int atk, int def, std::string race, char display);
+  character(int hp, int hpMax, int atk, int def, std::string race, char display);
 
   int getHp() const;
   int getAtk() const;
@@ -21,7 +22,7 @@ public:
   std::string getRace() const;
   item *getGuard() const;
 
-  void addHp(int inc);
+  virtual void addHp(int inc);
   void addAtk(int inc);
   void addDef(int inc);
   void setGuard(item *treasure);

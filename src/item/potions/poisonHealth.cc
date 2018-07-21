@@ -1,5 +1,5 @@
 #include "poisonHealth.h"
-#include "../character.h"
+#include "../../character.h"
 
 poisonHealth::poisonHealth(): potion{"poisonHealth"} {}
 

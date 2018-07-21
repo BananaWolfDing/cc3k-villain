@@ -30,8 +30,8 @@ public:
   int getCol() const;
   std::vector<cell *> getNeighbour() const;
 
-  enemy *getGuardian() const {return nullptr}
-  int getAmount() const {return 0}
+  enemy *getGuardian() const { return nullptr; }
+  int getAmount() const { return 0; }
   std::string getName() const {return "";}
   void use() const {}
   std::string getRace() const {return "";}

@@ -16,7 +16,7 @@ class chamber {
   cell *randomCell();
   cell *randomEmptyCell();
   cell *dragonCell(cell *treasure);
-  cell *validDragonHoardCell(cell *c);
+  bool *validDragonHoardCell(cell *c);
   cell *dragonHoardCell();
 public:
   void addCell(cell *c);
