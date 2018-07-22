@@ -6,7 +6,7 @@ class vampire : public player {
 public:
   vampire();
   void addHp(int inc);
-  int attack(cell &defender) override;
+  int attack(cell &defender);
 };
 
 #endif

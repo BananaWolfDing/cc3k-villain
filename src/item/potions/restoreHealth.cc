@@ -1,5 +1,4 @@
 #include "restoreHealth.h"
-#include "../../character.h"
 
 restoreHealth::restoreHealth(): potion{"restoreHealth"} {}
 

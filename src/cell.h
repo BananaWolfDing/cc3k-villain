@@ -26,7 +26,9 @@ public:
   void setCol(int c);
   void setNeighbour(std::vector<cell *> n);
   void addNeighbour(cell *c);
+  void removeNeighbour(cell *c);
 
+  player *getPC() const;
   bool isCharacter() const;
   bool getEmpty() const;
   bool getStair() const;

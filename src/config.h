@@ -26,6 +26,8 @@ const int             YMove[8] = {-1     , -1         , 0     , 1          , 1  
 int dirIndex(std::string dir) {
   for (int i = 0; i < 8; i++)
     if (direction[i] == dir) return i;
+
+  return -1;
 }
 
 #endif

@@ -15,7 +15,6 @@ public:
   item(std::string name, char display, enemy *guardian = nullptr);
 
   char getDisplay() const;
-  std::string getName() const;
   enemy *getGuardian() const;
   void setGuardian(enemy *guardian);
   virtual void use() = 0;

@@ -5,12 +5,8 @@
 #include <ctime>
 #include <cstdio>
 #include <cstdlib>
-#include "config.h"
 #include "cell.h"
-#include "findChamber.h"
 #include "chamber.h"
-
-class player;
 
 class floor {
   std::vector<std::vector<char>> map;

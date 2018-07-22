@@ -4,17 +4,19 @@
 #include "item/allItems.h"
 #include <string>
 #include <iostream>
+#include <cstdlib>
 
-void gameOver() {
+inline void gameOver() {
   std::cout << "You lose" << std::endl;
 }
 
 int main() {
+  srand((unsigned)time(NULL));
   std::cout << "Hello, welcome to CC3K...(we will add some words here later)" << std::endl;
   std::cout << "First, choose your race among Drow, Goblin, Shade, Troll and Vampire" << std::endl;
-  std::string race;
+  std::string race = "Drow";
   player *PC;
-  while (std::getline(std::cin, race))
+  while (true)//std::getline(std::cin, race))
     if (race == "Drow") {
       PC = new drow;
       break;
@@ -23,15 +25,15 @@ int main() {
       PC = new goblin;
       break;
     }
-    else if (race == "shade") {
+    else if (race == "Shade") {
       PC = new shade;
       break;
     }
-    else if (race == "troll") {
+    else if (race == "Troll") {
       PC = new troll;
       break;
     }
-    else if (race == "vampire") {
+    else if (race == "Vampire") {
       PC = new vampire;
       break;
     }
@@ -41,6 +43,7 @@ int main() {
   std::string command;
   for (int curFloor = 1; curFloor <= 5; curFloor++) {
     floor gameFloor(readMap("map.txt"), PC, curFloor);
+    gameFloor.paint("New floor!");
     while (std::getline(std::cin, command)) {
       std::string action = gameFloor.PCTurn(command);
       if (command == "?") continue;

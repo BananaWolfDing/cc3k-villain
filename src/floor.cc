@@ -1,4 +1,6 @@
 #include "floor.h"
+#include "findChamber.h"
+#include "config.h"
 #include <cmath>
 #include <ctime>
 #include <cstdlib>
@@ -7,16 +9,16 @@
 #include <sstream>
 #include <iostream>
 
-bool inGrid(int x, int y) {
+inline bool inGrid(int x, int y) {
   return x >= 0 && x < gridHeight && y >= 0 && y < gridWidth;
 }
 
-void linkCells(cell *x, cell *y) {
+inline void linkCells(cell *x, cell *y) {
   x->addNeighbour(y);
   y->addNeighbour(x);
 }
 
-void buildGrid(std::vector<std::vector<cell *>> &grid,
+inline void buildGrid(std::vector<std::vector<cell *>> &grid,
          const std::vector<std::vector<std::pair<int, int>>> chambers, player *PC) {
   for (int i = 0; i < chamberNum; i++) {
     int n = chambers[i].size();
@@ -30,10 +32,10 @@ void buildGrid(std::vector<std::vector<cell *>> &grid,
 
   for (int i = 0; i < gridHeight; i++)
     for (int j = 0; j < gridWidth; j++) {
-      if (inGrid(i, j + 1) && grid[i][j + 1] != nullptr)
+      if (inGrid(i, j + 1) && grid[i][j] != nullptr && grid[i][j + 1] != nullptr)
         linkCells(grid[i][j], grid[i][j + 1]);
-      if (inGrid(i + 1, j) && grid[i + 1][j] != nullptr)
-          linkCells(grid[i][j], grid[i + 1][j]);
+      if (inGrid(i + 1, j) && grid[i][j] != nullptr && grid[i + 1][j] != nullptr)
+        linkCells(grid[i][j], grid[i + 1][j]);
     }
 }
 
@@ -56,7 +58,6 @@ void floor::createPotion() {
     int n = rand() % chamberNum;
     cell *c;
     int p = rand() % potionKinds;
-
     switch (p) {
       case 0: c = chambers[n]->createBA();
       case 1: c = chambers[n]->createBD();
@@ -113,7 +114,11 @@ void floor::createEnemy() {
 
 floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum):
     map{map}, freezeEnemy{false}, PC{PC}, whichFloor{floorNum} {
+  grid.resize(gridHeight, std::vector<cell *>(gridWidth));
+  map.resize(gridHeight, std::vector<char>(gridWidth));
+
   std::vector<std::vector<std::pair<int, int>>> chamberCell;
+
   findChamber(map, chamberCell);
   buildGrid(grid, chamberCell, PC);
   for (int i = 0; i < chamberNum; i++) {
@@ -123,12 +128,17 @@ floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum):
     chambers.push_back(cham);
   }
 
-  srand(time(NULL));
+  std::cout << "So far so good!" << std::endl;
   createPlayer(PC);
+  std::cout << "So far so good!" << std::endl;
   createStair();
+  std::cout << "So far so good!" << std::endl;
   createPotion();
+  std::cout << "So far so good!" << std::endl;
   createGold();
+  std::cout << "So far so good!" << std::endl;
   createEnemy();
+  std::cout << "So far so good!" << std::endl;
 }
 
 floor::~floor() {
@@ -198,11 +208,12 @@ std::string floor::PCUsePotion(std::string dir) {
   else if (map[aimX][aimY] != 'P')
     return "There is no potion in " + formal[dirIndex(dir)];
   else {
+    std::string p = grid[aimX][aimY]->getName();
     grid[aimX][aimY]->use();
     delete grid[aimX][aimY];
     grid[aimX][aimY] = new cell(aimX, aimY);
+    return "PC uses " + p;
   }
-
 }
 
 std::string floor::PCAttack(std::string dir) {
@@ -267,7 +278,7 @@ std::string floor::PCTurn(std::string command) {
   return action;
 }
 
-bool enemyCompare(cell *a, cell *b) {
+inline bool enemyCompare(cell *a, cell *b) {
   return (a->getRow() < b->getRow()) ||
          (a->getRow() == b->getRow() && a->getCol() < b->getCol());
 }
@@ -295,7 +306,6 @@ void floor::enemyTurn() {
 
       int s = possibleMoves.size();
       if (s) {
-        srand(time(NULL));
         cell *c = possibleMoves[rand() % s];
         int xx = c->getRow();
         int yy = c->getCol();
@@ -327,7 +337,6 @@ void floor::enemyTurn() {
 
       int s = possibleMoves.size();
       if (s) {
-        srand(time(NULL));
         cell *c = possibleMoves[rand() % s];
         int x = (*itr)->getRow();
         int y = (*itr)->getCol();
