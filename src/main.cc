@@ -53,7 +53,7 @@ int main() {
         return 0;
       }
       if (gameFloor.passedFloor()) break;
-      gameFloor.enemyTurn();
+      action += "\n" + gameFloor.enemyTurn();
 
       if (PC->getHp() == 0) {
         gameOver();

@@ -4,6 +4,7 @@
 #include <string>
 #include <ctime>
 #include <cstdio>
+#include <utility>
 #include <cstdlib>
 #include "cell.h"
 #include "chamber.h"
@@ -13,6 +14,7 @@ class floor {
   std::vector<std::vector<cell *>> grid;
   std::vector<chamber *> chambers;
   std::vector<cell *> enemies;
+  void buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambers);
   void createPlayer(player *PC);
   void createStair();
   void createPotion();
@@ -29,7 +31,7 @@ public:
   ~floor();
   bool passedFloor() const;
   std::string PCTurn(std::string command);
-  void enemyTurn();
+  std::string enemyTurn();
   void paint(std::string action) const;
 };
 

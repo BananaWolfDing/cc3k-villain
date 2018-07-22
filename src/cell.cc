@@ -6,6 +6,8 @@ cell::cell(int row, int col, char display):
 
 cell::cell() {}
 
+cell::~cell() {}
+
 void cell::setPC(player *PC) {
   this->PC = PC;
 }
@@ -44,21 +46,15 @@ void cell::replaceCell(cell *c) {
   setRow(c->getRow());
   setCol(c->getCol());
   setPC(c->getPC());
-  std::vector<cell *> neighbours = c->getNeighbour();
-  setNeighbour(neighbours);
-  for (auto itr = neighbours.begin(); itr != neighbours.end(); itr++) {
+  std::vector<cell *> theNeighbours = c->getNeighbour();
+  setNeighbour(theNeighbours);
+  for (auto itr = theNeighbours.begin(); itr != theNeighbours.end(); itr++) {
     (*itr)->removeNeighbour(c);
     (*itr)->addNeighbour(this);
   }
 
-  cell *p = c;
-  c = nullptr;
-  if (p != nullptr)
-    std::cout << " &&& " << p->getRow() << std::endl;
-  else
-    std::cout << "NULL" << std::endl;
-
-  delete p;
+  // delete c;
+  c = this;
 }
 
 player *cell::getPC() const {

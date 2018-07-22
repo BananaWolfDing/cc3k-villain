@@ -20,6 +20,7 @@ protected:
 public:
   cell(int row, int col, char display = '.');
   cell();
+  ~cell();
   void setPC(player *PC);
   void setStair();
   void setRow(int r);
@@ -38,18 +39,18 @@ public:
   int getCol() const;
   std::vector<cell *> getNeighbour() const;
 
-  enemy *getGuardian() const {return nullptr;}
-  int getAmount() const {return 0;}
-  std::string getName() const {return "";}
-  void use() const {}
-  std::string getRace() const {return "";}
-  int getHp() const {return 0;}
-  void die(player &) const {}
-  void setGuardian(enemy *) {}
-  int getAtk() const {return 0;}
-  int defend(cell &) {return 0;}
-  int attack(character &) {return 0;}
-  cell *getGuard() const {return nullptr;}
+  virtual enemy *getGuardian() const {return nullptr;}
+  virtual int getAmount() const {return 0;}
+  virtual std::string getName() const {return "";}
+  virtual void use() {}
+  virtual std::string getRace() const {return "";}
+  virtual int getHp() const {return 0;}
+  virtual void die(player &) {}
+  virtual void setGuardian(enemy *) {}
+  virtual int getAtk() const {return 0;}
+  virtual int defend(cell &) {return 0;}
+  virtual int attack(character &) {return 0;}
+  virtual cell *getGuard() const {return nullptr;}
 };
 
 #endif

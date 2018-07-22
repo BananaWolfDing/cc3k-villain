@@ -19,6 +19,7 @@ public:
   int getAtk() const;
   int getDef() const;
   std::string getRace() const;
+  std::string getName() const;
   cell *getGuard() const;
 
   virtual void addHp(int inc);

@@ -19,8 +19,7 @@ inline void linkCells(cell *x, cell *y) {
   y->addNeighbour(x);
 }
 
-inline void buildGrid(std::vector<std::vector<cell *>> &grid,
-         const std::vector<std::vector<std::pair<int, int>>> chambers, player *PC) {
+void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambers) {
   for (int i = 0; i < chamberNum; i++) {
     int n = chambers[i].size();
     for (int j = 0; j < n; j++) {
@@ -57,47 +56,48 @@ void floor::createStair() {
 void floor::createPotion() {
   for (int i = 0; i < potionNum; i++) {
     int n = rand() % chamberNum;
+    int p = rand() % potionKinds;
     cell *c;
-    int p = rand() % potionKinds;p = 0;
-    switch (p) {
-      case 0: c = chambers[n]->createBA();
-      case 1: c = chambers[n]->createBD();
-      case 2: c = chambers[n]->createPH();
-      case 3: c = chambers[n]->createRH();
-      case 4: c = chambers[n]->createWA();
-      case 5: c = chambers[n]->createWD();
-    }
+
+    if (p == 0)
+      c = chambers[n]->createBA();
+    else if (p == 1)
+      c = chambers[n]->createBD();
+    else if (p == 2)
+      c = chambers[n]->createPH();
+    else if (p == 3)
+      c = chambers[n]->createRH();
+    else if (p == 4)
+      c = chambers[n]->createWA();
+    else
+      c = chambers[n]->createWD();
 
     map[c->getRow()][c->getCol()] = c->getDisplay();
-    std::cout << "Check:" << std::endl;
-    std::cout << " row: " << c->getRow() << " col: " << c->getCol() << std::endl;
-    std::cout << " row: " << grid[c->getRow()][c->getCol()]->getRow() << " col: " << grid[c->getRow()][c->getCol()]->getCol() << std::endl;
-    c->replaceCell(grid[c->getRow()][c->getCol()]);
-    std::cout << "This works???????????????" << std::endl;
+    grid[c->getRow()][c->getCol()] = c;
   }
 }
 
 void floor::createGold() {
   for (int i = 0; i < goldNum; i++) {
     int n = rand() % chamberNum;
-    cell *c;
     int g = rand() % goldKinds;
-std::cout << "Gold kind :" << g << std::endl;
-    switch (g) {
-      case 0:
-        c = chambers[n]->createGold(1);
-      case 1:
-        c = chambers[n]->createGold(2);
-      case 2:
-        c = chambers[n]->createGold(4);
-      case 3:
-        c = chambers[n]->createGold(6);
-        cell *d = chambers[n]->createDragon(c);
-        grid[d->getRow()][d->getCol()] = d;
+    cell *c;
+
+    if (g == 0)
+      c = chambers[n]->createGold(1);
+    else if (g == 1)
+      c = chambers[n]->createGold(2);
+    else if (g == 2)
+      c = chambers[n]->createGold(4);
+    else {
+      c = chambers[n]->createGold(6);
+      cell *d = chambers[n]->createDragon(c);
+      map[d->getRow()][d->getCol()] = d->getDisplay();
+      grid[d->getRow()][d->getCol()] = d;
     }
 
     map[c->getRow()][c->getCol()] = c->getDisplay();
-    c->replaceCell(grid[c->getRow()][c->getCol()]);
+    grid[c->getRow()][c->getCol()] = c;
   }
 }
 
@@ -105,7 +105,7 @@ void floor::createEnemy() {
   for (int i = 0; i < goldNum; i++) {
     int n = rand() % chamberNum;
     cell *c;
-    int e = rand() % enemyKinds + 1;
+    int e = rand() % enemyNum + 1;
 
     if (e <= PHuman)
       c = chambers[n]->createHuman();
@@ -121,7 +121,7 @@ void floor::createEnemy() {
       c = chambers[n]->createMerchant();
 
     map[c->getRow()][c->getCol()] = c->getDisplay();
-    c->replaceCell(grid[c->getRow()][c->getCol()]);
+    grid[c->getRow()][c->getCol()] = c;
     enemies.push_back(c);
   }
 }
@@ -133,7 +133,7 @@ floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum):
   std::vector<std::vector<std::pair<int, int>>> chamberCell;
 
   findChamber(map, chamberCell);
-  buildGrid(grid, chamberCell, PC);
+  buildGrid(chamberCell);
   for (int i = 0; i < chamberNum; i++) {
     chamber *cham = new chamber;
     for (auto itr = chamberCell[i].begin(); itr != chamberCell[i].end(); itr++)
@@ -144,11 +144,8 @@ floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum):
   createPlayer(PC);
   createStair();
   createPotion();
-  std::cout << "This works!" << std::endl;
   createGold();
-  std::cout << "This works!" << std::endl;
   createEnemy();
-  std::cout << "This works!" << std::endl;
 }
 
 floor::~floor() {
@@ -190,9 +187,11 @@ std::string floor::PCMove(std::string dir) {
     action = "PC moves " + formal[dirIndex(dir)] + " and picked some gold worth "
            + std::to_string(grid[aimX][aimY]->getAmount());
 
-    delete grid[aimX][aimY];
-    grid[aimX][aimY]= new cell(aimX, aimY);
-
+    grid[aimX][aimY]->use();
+    cell *newCell = new cell(aimX, aimY);
+    newCell->replaceCell(grid[aimX][aimY]);
+    grid[aimX][aimY] = newCell;
+    map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
   }
   else
     return "Way blocked by a " + grid[aimX][aimY]->getName() + "!";
@@ -227,6 +226,7 @@ std::string floor::PCUsePotion(std::string dir) {
     cell *newCell = new cell(aimX, aimY);
     newCell->replaceCell(grid[aimX][aimY]);
     grid[aimX][aimY] = newCell;
+    map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
     return "PC uses " + p;
   }
 }
@@ -255,7 +255,12 @@ std::string floor::PCAttack(std::string dir) {
       for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
         if (*itr == grid[aimX][aimY])
           enemies.erase(itr);
-      delete grid[aimX][aimY];
+
+      cell *newCell = new cell(aimX, aimY);
+      newCell->replaceCell(grid[aimX][aimY]);
+      grid[aimX][aimY] = newCell;
+      map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
+      // delete grid[aimX][aimY];
     }
 
     action += "!";
@@ -298,37 +303,32 @@ inline bool enemyCompare(cell *a, cell *b) {
          (a->getRow() == b->getRow() && a->getCol() < b->getCol());
 }
 
-void floor::enemyTurn() {
+std::string floor::enemyTurn() {
   std::string action = "";
   std::sort(enemies.begin(), enemies.end(), enemyCompare);
   for (auto itr = enemies.begin(); itr != enemies.end(); itr++) {
-    std::cout << "Race: " << (*itr)->getRace() << " Row: " << (*itr)->getRow() << std::endl;
     if (std::abs(PC->getRow() - (*itr)->getRow()) <= 1 &&
         std::abs(PC->getCol() - (*itr)->getCol()) <= 1) {
       int damage = (*itr)->attack(*PC);
       action += (*itr)->getRace() + " attacks PC";
       if (damage)
-        action += " and deals " + std::to_string(damage) + " damage.";
+        action += " and deals " + std::to_string(damage) + " damage.\n";
       else
-        action += " but missed.";
+        action += " but missed.\n";
     } else if ((*itr)->getRace() != "dragon") {
       if (freezeEnemy) continue;
       std::vector<cell *> possibleMoves;
       int x = (*itr)->getRow();
       int y = (*itr)->getCol();
       for (int i = 0; i < 8; i++)
-        if (inGrid(x + XMove[i], y + YMove[i]) && map[x + XMove[i]][y + YMove[i]] == '.'){
+        if (inGrid(x + XMove[i], y + YMove[i]) && map[x + XMove[i]][y + YMove[i]] == '.')
           possibleMoves.push_back(grid[x + XMove[i]][y + YMove[i]]);
-          std::cout << " aimX = " << x + XMove[i] << " aimY = " << y + YMove[i] << std::endl;
-          std::cout << " aimX = " << grid[x + XMove[i]][y + YMove[i]]->getRow() << " aimY = " << grid[x + XMove[i]][y + YMove[i]]->getCol() << std::endl;
-        }
 
       int s = possibleMoves.size();
       if (s) {
         cell *c = possibleMoves[rand() % s];
         int xx = c->getRow();
         int yy = c->getCol();
-        std::cout << " aimX = " << xx << " aimY = " << yy << std::endl;
 
         cell *tmpCell = grid[xx][yy];
         grid[xx][yy] = grid[x][y];
@@ -378,6 +378,8 @@ void floor::enemyTurn() {
       }
     }
   }
+
+  return action;
 }
 
 void floor::paint(std::string action) const {

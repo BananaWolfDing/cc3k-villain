@@ -18,6 +18,7 @@ class chamber {
   cell *dragonCell(cell *treasure);
   bool validDragonHoardCell(cell *c);
   cell *dragonHoardCell();
+  void updateCell(cell *origCell, cell *newCell);
 public:
   void addCell(cell *c);
   bool playerRoom() const;

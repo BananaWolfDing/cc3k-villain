@@ -8,7 +8,7 @@ class gold : public item {
   int amount;
 public:
   gold(int amount);
-  int getAmount() const;
+  int getAmount() const override;
   void use() override;
 };
 

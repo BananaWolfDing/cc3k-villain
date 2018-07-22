@@ -26,6 +26,10 @@ std::string character::getRace() const {
   return race;
 }
 
+std::string character::getName() const {
+  return race;
+}
+
 cell *character::getGuard() const {
   return guard;
 }

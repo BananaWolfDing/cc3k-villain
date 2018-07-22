@@ -19,7 +19,16 @@ cell *chamber::randomEmptyCell() {
   while (!c->getEmpty() || (c->getRow() == PCBornRow && c->getCol() == PCBornCol))
     c = randomCell();
 
+  std::cout << "The random empty cell we return: (" << c->getRow() << ", " << c->getCol() << ")\n";
   return c;
+}
+
+void chamber::updateCell(cell *origCell, cell *newCell) {
+  for (auto itr = cells.begin(); itr != cells.end(); itr++)
+    if (*itr == origCell) {
+      *itr = newCell;
+      break;
+    }
 }
 
 cell *chamber::dragonCell(cell *treasure) {
@@ -69,49 +78,56 @@ cell *chamber::createStair() {
 
 cell *chamber::createHuman() {
   cell *c = randomEmptyCell();
-  human *npc = new human;
+  std::cout << "The random empty cell we got: (" << c->getRow() << ", " << c->getCol() << ")\n";
+  cell *npc = new human;
+  updateCell(c, npc);
   npc->replaceCell(c);
   return npc;
 }
 
 cell *chamber::createDwarf() {
   cell *c = randomEmptyCell();
-  dwarf *npc = new dwarf;
+  cell *npc = new dwarf;
+  updateCell(c, npc);
   npc->replaceCell(c);
   return npc;
 }
 
 cell *chamber::createHalfling() {
   cell *c = randomEmptyCell();
-  halfling *npc = new halfling;
+  cell *npc = new halfling;
   npc->replaceCell(c);
   return npc;
 }
 
 cell *chamber::createElf() {
   cell *c = randomEmptyCell();
-  elf *npc = new elf;
+  cell *npc = new elf;
+  updateCell(c, npc);
   npc->replaceCell(c);
   return npc;
 }
 
 cell *chamber::createOrc() {
   cell *c = randomEmptyCell();
-  orc *npc = new orc;
+  cell *npc = new orc;
+  updateCell(c, npc);
   npc->replaceCell(c);
   return npc;
 }
 
 cell *chamber::createMerchant() {
   cell *c = randomEmptyCell();
-  merchant *npc = new merchant;
+  cell *npc = new merchant;
+  updateCell(c, npc);
   npc->replaceCell(c);
   return npc;
 }
 
 cell *chamber::createDragon(cell *treasure) {
   cell *c = dragonCell(treasure);
-  dragon *npc = new dragon(treasure);
+  cell *npc = new dragon(treasure);
+  updateCell(c, npc);
   npc->replaceCell(c);
   return npc;
 }
@@ -127,43 +143,49 @@ void chamber::setPC(player *PC) {
 }
 
 cell *chamber::createBA() {
-  cell *c = randomEmptyCell();std::cout << "This works???" << std::endl;
-  boostAttack *pot = new boostAttack;std::cout << "This works???" << std::endl;
-  pot->replaceCell(c);std::cout << "This works???" << std::endl;
+  cell *c = randomEmptyCell();
+  cell *pot = new boostAttack;
+  updateCell(c, pot);
+  pot->replaceCell(c);
   return pot;
 }
 
 cell *chamber::createBD() {
   cell *c = randomEmptyCell();
-  boostDefence *pot = new boostDefence;
+  cell *pot = new boostDefence;
+  updateCell(c, pot);
   pot->replaceCell(c);
   return pot;
 }
 
 cell *chamber::createPH() {
   cell *c = randomEmptyCell();
-  poisonHealth *pot = new poisonHealth;
+  cell *pot = new poisonHealth;
+  updateCell(c, pot);
   pot->replaceCell(c);
   return pot;
 }
 
 cell *chamber::createRH() {
   cell *c = randomEmptyCell();
-  restoreHealth *pot = new restoreHealth;
+  cell *pot = new restoreHealth;
+  updateCell(c, pot);
   pot->replaceCell(c);
   return pot;
 }
 
 cell *chamber::createWA() {
   cell *c = randomEmptyCell();
-  woundAttack *pot = new woundAttack;
+  cell *pot = new woundAttack;
+  updateCell(c, pot);
   pot->replaceCell(c);
   return pot;
 }
 
 cell *chamber::createWD() {
   cell *c = randomEmptyCell();
-  woundDefence *pot = new woundDefence;
+  cell *pot = new woundDefence;
+  updateCell(c, pot);
   pot->replaceCell(c);
   return pot;
 }
@@ -174,8 +196,9 @@ cell *chamber::createGold(int amount) {
     c = randomEmptyCell();
   else
     c = dragonHoardCell();
-  std::cout << "Gold amount: " << amount << std::endl;
-  gold *g = new gold(amount);
+
+  cell *g = new gold(amount);
+  updateCell(c, g);
   g->replaceCell(c);
   return g;
 }

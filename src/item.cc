@@ -6,6 +6,10 @@ item::item(std::string name, char display, enemy *guardian):
   this->empty = false;
 }
 
+std::string item::getName() const {
+  return name;
+}
+
 char item::getDisplay() const {
   return display;
 }
