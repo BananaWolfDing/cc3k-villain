@@ -16,7 +16,7 @@ const int PHalfling = 12; // 12 = 4 + 3 + 5
 const int PElf = 14; // 14 = 4 + 3 + 5 + 2
 const int POrc = 16; // 16 = 4 + 3 + 5 + 2 + 2
 const int PMerchant = 18; // 18 = 4 + 3 + 5 + 2 + 2 + 2
-const int PTotal = PHuman + PDwarf + PHalfling + PElf + POrc + PMerchant;
+const int PTotal = 18;
 
 const std::string    formal[8] = {"North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest"};
 const std::string direction[8] = {"no"   , "ne"       , "ea"  , "se"       , "so"   , "sw"       , "we"  , "nw"       };

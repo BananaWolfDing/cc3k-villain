@@ -14,9 +14,9 @@ int main() {
   srand((unsigned)time(NULL));
   std::cout << "Hello, welcome to CC3K...(we will add some words here later)" << std::endl;
   std::cout << "First, choose your race among Drow, Goblin, Shade, Troll and Vampire" << std::endl;
-  std::string race = "Drow";
+  std::string race;
   player *PC;
-  while (true)//std::getline(std::cin, race))
+  while (std::getline(std::cin, race))
     if (race == "Drow") {
       PC = new drow;
       break;
@@ -42,6 +42,7 @@ int main() {
 
   std::string command;
   for (int curFloor = 1; curFloor <= 5; curFloor++) {
+    PC->reset();
     floor gameFloor(readMap("../map.txt"), PC, curFloor);
     gameFloor.paint("New floor!");
     while (std::getline(std::cin, command)) {

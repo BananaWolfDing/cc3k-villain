@@ -15,3 +15,8 @@ void player::setGold(int gold) {
 void player::addGold(int gold) {
   this->gold += gold;
 }
+
+void player::reset() {
+  atk = stdAtk;
+  def = stdDef;
+}

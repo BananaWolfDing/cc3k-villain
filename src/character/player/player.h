@@ -12,6 +12,7 @@ public:
   void setGold(int gold);
   void addGold(int gold);
   void die(player &) {}
+  void reset();
 };
 
 #endif

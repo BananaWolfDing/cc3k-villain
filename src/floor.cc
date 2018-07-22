@@ -94,6 +94,7 @@ void floor::createGold() {
       cell *d = chambers[n]->createDragon(c);
       map[d->getRow()][d->getCol()] = d->getDisplay();
       grid[d->getRow()][d->getCol()] = d;
+      enemies.push_back(d);
     }
 
     map[c->getRow()][c->getCol()] = c->getDisplay();
@@ -102,10 +103,10 @@ void floor::createGold() {
 }
 
 void floor::createEnemy() {
-  for (int i = 0; i < goldNum; i++) {
+  for (int i = 0; i < enemyNum; i++) {
     int n = rand() % chamberNum;
     cell *c;
-    int e = rand() % enemyNum + 1;
+    int e = rand() % PTotal + 1;
 
     if (e <= PHuman)
       c = chambers[n]->createHuman();
