@@ -20,8 +20,8 @@ const int PTotal = PHuman + PDwarf + PHalfling + PElf + POrc + PMerchant;
 
 const std::string    formal[8] = {"North", "Northeast", "East", "Southeast", "South", "Southwest", "West", "Northwest"};
 const std::string direction[8] = {"no"   , "ne"       , "ea"  , "se"       , "so"   , "sw"       , "we"  , "nw"       };
-const int             XMove[8] = {0      , 1          , 1     , 1          , 0      , -1         , -1    , -1         };
-const int             YMove[8] = {-1     , -1         , 0     , 1          , 1      , 1          , 0     , -1         };
+const int             XMove[8] = {-1     , -1         , 0     , 1          , 1      , 1          , 0     , -1         };
+const int             YMove[8] = {0      , 1          , 1     , 1          , 0      , -1         , -1    , -1         };
 
 int dirIndex(std::string dir) {
   for (int i = 0; i < 8; i++)

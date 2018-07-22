@@ -27,8 +27,10 @@ public:
   void setNeighbour(std::vector<cell *> n);
   void addNeighbour(cell *c);
   void removeNeighbour(cell *c);
+  void replaceCell(cell *c);
 
   player *getPC() const;
+  char getDisplay() const;
   bool isCharacter() const;
   bool getEmpty() const;
   bool getStair() const;

@@ -42,11 +42,11 @@ int main() {
 
   std::string command;
   for (int curFloor = 1; curFloor <= 5; curFloor++) {
-    floor gameFloor(readMap("map.txt"), PC, curFloor);
+    floor gameFloor(readMap("../map.txt"), PC, curFloor);
     gameFloor.paint("New floor!");
     while (std::getline(std::cin, command)) {
       std::string action = gameFloor.PCTurn(command);
-      if (command == "?") continue;
+      if (action == "?") continue;
 
       if (PC->getHp() == 0) {
         gameOver();

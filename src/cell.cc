@@ -1,4 +1,5 @@
 #include "cell.h"
+#include <iostream>
 
 cell::cell(int row, int col, char display):
   row{row}, col{col}, display{display}, stair{false}, empty{true} {}
@@ -39,12 +40,37 @@ void cell::removeNeighbour(cell *c) {
     }
 }
 
+void cell::replaceCell(cell *c) {
+  setRow(c->getRow());
+  setCol(c->getCol());
+  setPC(c->getPC());
+  std::vector<cell *> neighbours = c->getNeighbour();
+  setNeighbour(neighbours);
+  for (auto itr = neighbours.begin(); itr != neighbours.end(); itr++) {
+    (*itr)->removeNeighbour(c);
+    (*itr)->addNeighbour(this);
+  }
+
+  cell *p = c;
+  c = nullptr;
+  if (p != nullptr)
+    std::cout << " &&& " << p->getRow() << std::endl;
+  else
+    std::cout << "NULL" << std::endl;
+
+  delete p;
+}
+
 player *cell::getPC() const {
   return PC;
 }
 
 bool cell::isCharacter() const {
   return isCha;
+}
+
+char cell::getDisplay() const {
+  return display;
 }
 
 bool cell::getEmpty() const {
