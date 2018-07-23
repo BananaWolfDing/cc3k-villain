@@ -194,6 +194,11 @@ std::string floor::PCMove(std::string dir) {
     grid[aimX][aimY] = newCell;
     map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
   }
+  else if (map[aimX][aimY] == 'G' && grid[aimX][aimY]->getGuardian() != nullptr) {
+    PC->setRow(aimX);
+    PC->setCol(aimY);
+    action = "PC moves" + formal[dirIndex(dir)] + " but can not pick the gold since there is a Guardian";
+  }
   else
     return "Way blocked by a " + grid[aimX][aimY]->getName() + "!";
 
