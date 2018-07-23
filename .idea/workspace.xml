@@ -12,6 +12,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1310132e-609c-4088-819b-71533297d19b" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/cell.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/cell.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/chamber.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/chamber.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/dragon.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/dragon.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/dwarf.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/dwarf.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/elf.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/elf.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/enemy.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/enemy.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/halfling.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/halfling.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/human.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/human.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/merchant.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/merchant.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/orc.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/enemy/orc.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/player/drow.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/player/drow.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/player/goblin.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/player/goblin.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/player/player.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/player/player.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/player/shade.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/player/shade.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/player/troll.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/player/troll.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/player/vampire.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/character/player/vampire.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/floor.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/floor.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/gold.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/gold.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/potions/boostAttack.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/potions/boostAttack.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/potions/boostDefence.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/potions/boostDefence.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/potions/poisonHealth.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/potions/poisonHealth.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/potions/restoreHealth.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/potions/restoreHealth.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/potions/woundAttack.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/potions/woundAttack.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/potions/woundDefence.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/item/potions/woundDefence.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/main.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/main.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/potion.cc.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cc3k_villain.dir/src/potion.cc.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cc3k_villain" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cc3k_villain" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/floor.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/floor.cc" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -25,21 +56,16 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="floor.cc" pinned="false" current-in-tab="false">
+      <file leaf-file-name="floor.cc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/floor.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="208" column="54" lean-forward="true" selection-start-line="208" selection-start-column="54" selection-end-line="208" selection-end-column="54" />
+            <state relative-caret-position="235">
+              <caret line="199" column="77" selection-start-line="199" selection-start-column="77" selection-end-line="199" selection-end-column="77" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="potion.cc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/potion.cc">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="potion.h" pinned="false" current-in-tab="false">
@@ -62,15 +88,10 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="restoreHealth.h" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/item/potions/restoreHealth.h">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file leaf-file-name="cell.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cell.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
+            <state relative-caret-position="158">
               <caret line="48" column="53" selection-start-line="48" selection-start-column="53" selection-end-line="48" selection-end-column="53" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
@@ -82,10 +103,26 @@
       <file leaf-file-name="cell.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cell.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="43" column="29" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="29" />
+            <state relative-caret-position="328">
+              <caret line="51" selection-start-line="51" selection-end-line="52" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="enemy.cc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/character/enemy/enemy.cc">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="enemy.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/character/enemy/enemy.h">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="item.cc" pinned="false" current-in-tab="false">
@@ -226,12 +263,12 @@
       <option name="presentableId" value="Default" />
       <updated>1531973633460</updated>
       <workItem from="1531973638563" duration="2132000" />
-      <workItem from="1532371415567" duration="5124000" />
+      <workItem from="1532371415567" duration="7147000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7256000" />
+    <option name="totallyTimeSpent" value="9279000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -244,15 +281,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32969698" />
-      <window_info anchor="bottom" id="Messages" weight="0.32969698" />
+      <window_info anchor="bottom" id="Messages" weight="0.40242425" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.32969698" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5672727" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.56969696" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -364,15 +402,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/character/enemy/enemy.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/character/player/player.cc">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -382,9 +411,6 @@
           <caret line="57" column="32" lean-forward="true" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/character/enemy/enemy.h">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.cc">
       <provider selected="true" editor-type-id="text-editor">
@@ -396,28 +422,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/floor.cc">
+    <entry file="file://$PROJECT_DIR$/src/potion.cc">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/item.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="208" column="54" lean-forward="true" selection-start-line="208" selection-start-column="54" selection-end-line="208" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="299">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/potion.cc">
+    <entry file="file://$PROJECT_DIR$/src/item/potions/restoreHealth.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/potion.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/item/potions/boostAttack.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/item/potions/boostAttack.cc">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/item/potions/restoreHealth.cc">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cell.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
+        <state relative-caret-position="158">
           <caret line="48" column="53" selection-start-line="48" selection-start-column="53" selection-end-line="48" selection-end-column="53" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
@@ -427,26 +459,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cell.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="43" column="29" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="29" />
+        <state relative-caret-position="328">
+          <caret line="51" selection-start-line="51" selection-end-line="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/item.cc">
+    <entry file="file://$PROJECT_DIR$/src/character/enemy/enemy.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        <state>
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/item/potions/boostAttack.h">
+    <entry file="file://$PROJECT_DIR$/src/character/enemy/enemy.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/item/potions/restoreHealth.cc">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/item/potions/restoreHealth.h">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/src/floor.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="199" column="77" selection-start-line="199" selection-start-column="77" selection-end-line="199" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

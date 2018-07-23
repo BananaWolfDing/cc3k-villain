@@ -182,17 +182,11 @@ std::string floor::PCMove(std::string dir) {
     PC->setCol(aimY);
     action = "PC moves " + formal[dirIndex(dir)];
   }
-  else if (map[aimX][aimY] == 'G' &&
-           (grid[aimX][aimY]->getGuardian() == nullptr ||
-            (grid[aimX][aimY]->getGuardian() != nullptr && grid[aimX][aimY]->getGuardian()->getHp() == 0))){
+  else if (map[aimX][aimY] == 'G' && grid[aimX][aimY]->getGuardian() == nullptr){
     PC->setRow(aimX);
     PC->setCol(aimY);
-    action = "PC moves " + formal[dirIndex(dir)];
-    if(grid[aimX][aimY]->getGuardian() != nullptr) {
-      action += " ,defeated the dragon guarding the gold.";
-    }
-    action += " and picked some gold worth " + std::to_string(grid[aimX][aimY]->getAmount());
-
+    action = "PC moves " + formal[dirIndex(dir)] + " and picked up gold worth "
+                                                   + std::to_string(grid[aimX][aimY]->getAmount());
     grid[aimX][aimY]->use();
     cell *newCell = new cell(aimX, aimY);
     newCell->replaceCell(grid[aimX][aimY]);
@@ -200,10 +194,10 @@ std::string floor::PCMove(std::string dir) {
     map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
   }
   else if (map[aimX][aimY] == 'G' && grid[aimX][aimY]->getGuardian() != nullptr) {
-    grid[aimX][aimY]->getGuard()->attack(*PC);
+    PC->setRow(aimX);
+    PC->setCol(aimY);
     action = "PC moves " + formal[dirIndex(dir)] +
-             " and attacked by the dragon guarding the gold. The gold worths " +
-             std::to_string(grid[aimX][aimY]->getAmount());
+             " but have to defeat the dragon guarding the gold to pick it up.";
   }
   else
     return "Way blocked by a " + grid[aimX][aimY]->getName() + "!";

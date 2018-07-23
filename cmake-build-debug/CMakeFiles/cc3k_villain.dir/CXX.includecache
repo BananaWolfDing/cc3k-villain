@@ -133,6 +133,8 @@ cstdlib
 -
 ctime
 -
+iostream
+-
 
 /Users/sunshuyi/Desktop/CS246/project/cc3k-villain/src/character/enemy/enemy.h
 ../player/player.h
