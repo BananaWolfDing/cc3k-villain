@@ -322,6 +322,7 @@ std::string floor::enemyTurn() {
     if (std::abs(PC->getRow() - (*itr)->getRow()) <= 1 &&
         std::abs(PC->getCol() - (*itr)->getCol()) <= 1) {
       int damage = (*itr)->attack(*PC);
+      std::cout << "test damage" << damage << std::endl;
       action += (*itr)->getRace() + " attacks PC";
       if (damage)
         action += " and deals " + std::to_string(damage) + " damage.\n";

@@ -8,7 +8,7 @@ halfling::halfling(): enemy{100, 15, 20, "halfling", 'L'} {}
 
 int halfling::defend(cell &attacker) {
   if (rand() % 2) {
-    int damage = std::max(getHp(), (int) ceil(100 * attacker.getAtk() / (100 + getDef())));
+    int damage = std::min(getHp(), (int) ceil(100 * attacker.getAtk() / (100 + getDef())));
     addHp(-damage);
     return damage;
   }
