@@ -6,7 +6,7 @@
 class elf : public enemy {
 public:
   elf();
-  int attack(character &defender);
+  std::string attack(cell &defender);
 };
 
 #endif
