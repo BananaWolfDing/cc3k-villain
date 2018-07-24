@@ -42,7 +42,7 @@ inline bool game() {
   std::string command;
   for (int curFloor = 1; curFloor <= 5; curFloor++) {
     PC->reset();
-    floor gameFloor(readMap("../map.txt"), PC, curFloor);
+    floor gameFloor(readMap("map.txt"), PC, curFloor);
     gameFloor.paint("New floor!");
     while (std::getline(std::cin, command)) {
       if (command == "q")

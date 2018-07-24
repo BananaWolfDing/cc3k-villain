@@ -1,9 +1,9 @@
-#include <algorithm> // Can we use this for max()?
+#include <algorithm>
 #include <cmath>
 #include "character.h"
 #include <iostream>
-#include "enemy/merchant.h"
-#include "enemy/enemy.h"
+#include "character/enemy/merchant.h"
+#include "character/enemy/enemy.h"
 
 character::character(int hp, int atk, int def, std::string race, char display):
   hp{hp}, hpMax{hp}, atk{atk}, stdAtk{atk}, def{def}, stdDef{def},
