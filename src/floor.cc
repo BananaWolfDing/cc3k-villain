@@ -339,23 +339,16 @@ inline bool enemyCompare(cell *a, cell *b) {
 std::string floor::enemyTurn() {
   std::string action = "";
   std::sort(enemies.begin(), enemies.end(), enemyCompare);
-  for (auto itr = enemies.begin(); itr != enemies.end(); itr++) {
+  for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
     if (std::abs(PC->getRow() - (*itr)->getRow()) <= 1 &&
-        std::abs(PC->getCol() - (*itr)->getCol()) <= 1 &&
-        (*itr)->getName() != "dragon")
+        std::abs(PC->getCol() - (*itr)->getCol()) <= 1)
       action += (*itr)->attack(*PC);
-    else if ((*itr)->getName() == "dragon") {
-      bool is_attack = false;
-      if (std::abs(PC->getRow() - (*itr)->getRow()) <= 1 &&
-          std::abs(PC->getCol() - (*itr)->getCol()) <= 1) {
+    else if ((*itr)->getRace() == "Dragon") {
+      if (std::abs(PC->getRow() - (*itr)->getGuard()->getRow()) <= 1 &&
+          std::abs(PC->getCol() - (*itr)->getGuard()->getCol()) <= 1)
         action += (*itr)->attack(*PC);
-      if (is_attack == false) {
-          if (std::abs(PC->getRow() - (*itr)->getGuard()->getRow()) <= 1 &&
-              std::abs(PC->getCol() - (*itr)->getGuard()->getCol()) <= 1)
-              action += (*itr)->attack(*PC);
-      }
     }
-    else if ((*itr)->getRace() != "dragon") {
+    else {
       if (freezeEnemy) continue;
       std::vector<cell *> possibleMoves;
       int x = (*itr)->getRow();
@@ -382,9 +375,8 @@ std::string floor::enemyTurn() {
         c->setCol(y);
         (*itr)->setRow(tmpX);
         (*itr)->setCol(tmpY);
+        }
       }
-    }
-  }
 
   return action;
 }

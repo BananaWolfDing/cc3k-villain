@@ -14,7 +14,7 @@ std::string vampire::attack(cell &defender) {
   std::string action = getName() + " attacks " + defender.getName();
   if (damage) {
     action += " and deals " + std::to_string(damage) + " damage";
-    if (defender.getRace() == "dwarf")
+    if (defender.getRace() == "Dwarf")
       addHp(-5);
     else
       addHp(5);
