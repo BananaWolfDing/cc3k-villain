@@ -361,41 +361,9 @@ std::string floor::enemyTurn() {
         (*itr)->setRow(tmpX);
         (*itr)->setCol(tmpY);
       }
-    } else {
-      if (freezeEnemy) continue;
-      std::vector<cell *> possibleMoves;
-      for (int i = -1; i <= 1; i++)
-        for (int j = -1; j <= 1; j++) {
-          int x = (*itr)->getGuard()->getRow() + i;
-          int y = (*itr)->getGuard()->getCol() + j;
-          if (inGrid(x, y) && map[x][y] == '.' &&
-              std::abs(x - (*itr)->getRow()) <= 1 && std::abs(y - (*itr)->getCol()) <= 1)
-            possibleMoves.push_back(grid[x][y]);
-        }
-
-      int s = possibleMoves.size();
-      if (s) {
-        cell *c = possibleMoves[rand() % s];
-        int x = (*itr)->getRow();
-        int y = (*itr)->getCol();
-        int xx = c->getRow();
-        int yy = c->getCol();
-
-        cell *tmpCell = grid[xx][yy];
-        grid[xx][yy] = grid[x][y];
-        grid[x][y] = tmpCell;
-        char tmpChar = map[xx][yy];
-        map[xx][yy] = map[x][y];
-        map[x][y] = tmpChar;
-
-        int tmpX = c->getRow(), tmpY = c->getCol();
-        c->setRow(x);
-        c->setCol(y);
-        (*itr)->setRow(tmpX);
-        (*itr)->setCol(tmpY);
-      }
     }
   }
+}
 
   return action;
 }
