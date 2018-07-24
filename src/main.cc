@@ -10,8 +10,7 @@ inline void gameOver() {
   std::cout << "You lose" << std::endl;
 }
 
-int main() {
-  srand((unsigned)time(NULL));
+inline bool game() {
   std::cout << "Hello, welcome to CC3K...(we will add some words here later)" << std::endl;
   std::cout << "First, choose your race among Drow, Goblin, Shade, Troll and Vampire" << std::endl;
   std::string race;
@@ -46,25 +45,36 @@ int main() {
     floor gameFloor(readMap("../map.txt"), PC, curFloor);
     gameFloor.paint("New floor!");
     while (std::getline(std::cin, command)) {
+      if (command == "q")
+        return false;
+      if (command == "r")
+        return true;
       std::string action = gameFloor.PCTurn(command);
-      if (action == "?") continue;
-
+      if (action == "?") {
+        std::cout << "Invalid input" << std::endl;
+        continue;
+      }
       if (PC->getHp() == 0) {
         gameOver();
         return 0;
       }
       if (gameFloor.passedFloor()) break;
-      action += "\n" + gameFloor.enemyTurn();
-
+        action += "\n        " + gameFloor.enemyTurn();
       if (PC->getHp() == 0) {
         gameOver();
         return 0;
       }
-
       gameFloor.paint(action);
     }
   }
 
-  std::cout << "You win! Score: " << PC->getGold() << std::endl;
+  std::cout << "You win! Score :" << PC->getGold() << std::endl;
+  return false;
+}
+
+int main() {
+  srand((unsigned)time(NULL));
+  while (game())
+    std::cout << "Game restart!" << std::endl;
   return 0;
 }
