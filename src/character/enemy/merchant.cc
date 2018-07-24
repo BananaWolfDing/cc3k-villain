@@ -17,4 +17,8 @@ bool merchant::isNeutral() const {
   return neutral;
 }
 
+void merchant::becomeHostile() {
+  neutral = false;
+}
+
 void merchant::die(player &) {}
