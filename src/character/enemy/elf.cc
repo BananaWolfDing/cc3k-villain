@@ -2,7 +2,7 @@
 #include <ctime>
 #include <cstdlib>
 
-elf::elf(): enemy{140, 30, 10, "elf", 'E'} {}
+elf::elf(): enemy{140, 30, 10, "Elf", 'E'} {}
 
 int elf::attack(character &defender) {
   int damage = 0;

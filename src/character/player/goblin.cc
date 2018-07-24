@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <cmath>
 
-goblin::goblin(): player{110, 15, 20, "drow", '@'} {}
+goblin::goblin(): player{110, 15, 20, "Drow", '@'} {}
 
 int goblin::defend(cell &attacker) {
   int damage = 0;

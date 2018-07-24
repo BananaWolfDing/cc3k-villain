@@ -4,7 +4,7 @@
 #include <cmath>
 #include <algorithm>
 
-halfling::halfling(): enemy{100, 15, 20, "halfling", 'L'} {}
+halfling::halfling(): enemy{100, 15, 20, "Halfling", 'L'} {}
 
 int halfling::defend(cell &attacker) {
   if (rand() % 2) {
