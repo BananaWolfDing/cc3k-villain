@@ -325,15 +325,42 @@ std::string floor::enemyTurn() {
   std::sort(enemies.begin(), enemies.end(), enemyCompare);
   for (auto itr = enemies.begin(); itr != enemies.end(); itr++) {
     if (std::abs(PC->getRow() - (*itr)->getRow()) <= 1 &&
-        std::abs(PC->getCol() - (*itr)->getCol()) <= 1) {
+        std::abs(PC->getCol() - (*itr)->getCol()) <= 1 &&
+        (*itr)->getName() != "dragon") {
       int damage = (*itr)->attack(*PC);
-//      std::cout << "test damage" << damage << std::endl;
       action += (*itr)->getRace() + " attacks PC";
       if (damage)
         action += " and deals " + std::to_string(damage) + " damage.\n";
       else
         action += " but missed.\n";
-    } else if ((*itr)->getRace() != "dragon") {
+    } else if ((*itr)->getName() == "dragon"){
+      bool is_attack = false;
+      if (std::abs(PC->getRow() - (*itr)->getRow()) <= 1 &&
+          std::abs(PC->getCol() - (*itr)->getCol()) <= 1) {
+        int damage = (*itr)->attack(*PC);
+        action += (*itr)->getRace() + " attacks PC";
+        if (damage) {
+          action += " and deals " + std::to_string(damage) + " damage.\n";
+          is_attack = true;
+        }
+        else
+          action += " but missed.\n";
+      }
+      else {
+        if (is_attack == false) {
+          if (std::abs(PC->getRow() - (*itr)->getGuard()->getRow()) <= 1 &&
+              std::abs(PC->getCol() - (*itr)->getGuard()->getCol()) <= 1) {
+            int damage = (*itr)->attack(*PC);
+            action += (*itr)->getRace() + " attacks PC";
+            if (damage)
+              action += " and deals " + std::to_string(damage) + " damage.\n";
+            else
+              action += " but missed.\n";
+          }
+        }
+      }
+    }
+    else if ((*itr)->getRace() != "dragon") {
       if (freezeEnemy) continue;
       std::vector<cell *> possibleMoves;
       int x = (*itr)->getRow();
@@ -363,7 +390,6 @@ std::string floor::enemyTurn() {
       }
     }
   }
-}
 
   return action;
 }

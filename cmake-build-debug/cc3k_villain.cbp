@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="cc3k_villain"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cc3k_villain">
+				<Option output="C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/cc3k_villain.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/summe/Documents/GitHub/cc3k-villain/src"/>
+					<Add directory="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character"/>
+					<Add directory="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy"/>
+					<Add directory="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player"/>
+					<Add directory="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item"/>
+					<Add directory="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/../../../../include"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include-fixed"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 cc3k_villain"/>
+					<CompileFile command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cc3k_villain/fast">
+				<Option output="C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/cc3k_villain.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/summe/Documents/GitHub/cc3k-villain/src"/>
+					<Add directory="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character"/>
+					<Add directory="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy"/>
+					<Add directory="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player"/>
+					<Add directory="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item"/>
+					<Add directory="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/../../../../include"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/include-fixed"/>
+					<Add directory="C:/Program Files (x86)/Dev-Cpp/MinGW64/bin/../lib/gcc/x86_64-w64-mingw32/4.9.2/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 cc3k_villain/fast"/>
+					<CompileFile command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/Dev-Cpp/MinGW64/bin/mingw32-make.exe -f &quot;C:/Users/summe/Documents/GitHub/cc3k-villain/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/cell.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/cell.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/chamber.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/chamber.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/allCharacters.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/dragon.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/dragon.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/dwarf.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/dwarf.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/elf.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/elf.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/enemy.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/enemy.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/halfling.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/halfling.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/human.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/human.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/merchant.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/merchant.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/orc.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/enemy/orc.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player/drow.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player/drow.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player/goblin.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player/goblin.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player/player.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player/player.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player/shade.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player/shade.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player/troll.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player/troll.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player/vampire.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/character/player/vampire.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/config.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/findChamber.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/findChamber.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/floor.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/floor.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/allItems.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/gold.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/gold.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions/boostAttack.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions/boostAttack.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions/boostDefence.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions/boostDefence.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions/poisonHealth.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions/poisonHealth.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions/restoreHealth.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions/restoreHealth.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions/woundAttack.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions/woundAttack.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions/woundDefence.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/item/potions/woundDefence.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/main.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/potion.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/potion.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/readMap.cc">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/src/readMap.h">
+			<Option target="cc3k_villain"/>
+		</Unit>
+		<Unit filename="C:/Users/summe/Documents/GitHub/cc3k-villain/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
