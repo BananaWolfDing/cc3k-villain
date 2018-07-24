@@ -200,7 +200,7 @@ std::string floor::PCMove(std::string dir) {
              " but have to defeat the dragon guarding the gold to pick it up.";
   }
   else
-    return "Way blocked by a " + grid[aimX][aimY]->getName() + "!";
+    return "Way blocked!";
 
   for (int i = 0; i < 8; i++) {
     int xx = aimX + XMove[i];
