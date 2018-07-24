@@ -167,7 +167,6 @@ std::string floor::PCMove(std::string dir) {
   int y = PC->getCol();
   int aimX = x + XMove[dirIndex(dir)];
   int aimY = y + YMove[dirIndex(dir)];
-//  std::cout << x << ' ' << y << ' '<< aimX << ' ' << aimY << std::endl;
   std::string action = "";
 
   if (!inGrid(aimX, aimY))
@@ -249,12 +248,8 @@ std::string floor::PCAttack(std::string dir) {
   else if (!grid[aimX][aimY]->isCharacter())
     return "There is no enemy in " + formal[dirIndex(dir)];
   else {
-    int damage = PC->attack(*grid[aimX][aimY]);
-    action = "PC attacks " + grid[aimX][aimY]->getRace();
-    if (damage)
-      action += " and deals " + std::to_string(damage) + " damage";
-    else
-      action += " but missed";
+    action = PC->attack(*grid[aimX][aimY]);
+
     if (grid[aimX][aimY]->getHp() == 0) {
       grid[aimX][aimY]->die(*PC);
       action += " and killed it";
@@ -346,15 +341,9 @@ std::string floor::enemyTurn() {
   std::sort(enemies.begin(), enemies.end(), enemyCompare);
   for (auto itr = enemies.begin(); itr != enemies.end(); itr++) {
     if (std::abs(PC->getRow() - (*itr)->getRow()) <= 1 &&
-        std::abs(PC->getCol() - (*itr)->getCol()) <= 1) {
-      int damage = (*itr)->attack(*PC);
-//      std::cout << "test damage" << damage << std::endl;
-      action += (*itr)->getRace() + " attacks PC";
-      if (damage)
-        action += " and deals " + std::to_string(damage) + " damage.\n";
-      else
-        action += " but missed.\n";
-    } else if ((*itr)->getRace() != "dragon") {
+        std::abs(PC->getCol() - (*itr)->getCol()) <= 1)
+      action += (*itr)->attack(*PC) + "\n";
+    else if ((*itr)->getRace() != "dragon") {
       if (freezeEnemy) continue;
       std::vector<cell *> possibleMoves;
       int x = (*itr)->getRow();
@@ -403,5 +392,5 @@ void floor::paint(std::string action) const {
   std::cout << "HP: " << PC->getHp() << std::endl;
   std::cout << "Atk: " << PC->getAtk() << std::endl;
   std::cout << "Def: " << PC->getDef() << std::endl;
-  std::cout << "Action: " << action << std::endl;
+  std::cout << "Action:\n" << action << std::endl;
 }

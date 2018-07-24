@@ -11,14 +11,16 @@ void enemy::die(player &killer) {
   killer.addGold(1 + rand() % 2);
 }
 
-int enemy::attack(cell &defender) {
-    int i = rand()%2;
-    if(i == 0) {
-        std::cout << "1:" << i << std::endl;
-        return 0;
-    }
-    else {
-        std::cout << "2:" << i << std::endl;
-        return defender.defend(*this);
-    }
+std::string enemy::attack(cell &defender) {
+  int damage = 0;
+  if (rand() % 2)
+    damage = defender.defend(*this);
+
+  std::string action = getName() + " attacks " + defender.getName();
+  if (damage)
+    action += " and deals " + std::to_string(damage) + " damage";
+  else
+    action += " but missed";
+
+  return action;
 }

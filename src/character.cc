@@ -57,8 +57,16 @@ void character::setGuard(item *treasure) {
   guard = treasure;
 }
 
-int character::attack(cell &defender) {
-  return defender.defend(*this);
+std::string character::attack(cell &defender) {
+  int damage = defender.defend(*this);
+
+  std::string action = getName() + " attacks " + defender.getName();
+  if (damage)
+    action += " and deals " + std::to_string(damage) + " damage";
+  else
+    action += " but missed";
+
+  return action;
 }
 
 int character::defend(cell &attacker) {

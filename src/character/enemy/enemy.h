@@ -6,7 +6,7 @@
 class enemy : public character {
 public:
   enemy(int maxHp, int atk, int def, std::string race, char display);
-  int attack(cell& defender);
+  std::string attack(cell& defender);
   virtual void die(player &killer);
 };
 

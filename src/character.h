@@ -28,7 +28,7 @@ public:
   void setGuard(item *treasure);
 
   virtual void die(player &killer) = 0;
-  virtual int attack(cell &defender);
+  virtual std::string attack(cell &defender);
   virtual int defend(cell &attacker);
 };
 
