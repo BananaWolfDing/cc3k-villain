@@ -1,3 +1,0 @@
-/Users/sunshuyi/Desktop/CS246/project/cc3k-villain/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/sunshuyi/Desktop/CS246/project/cc3k-villain/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/sunshuyi/Desktop/CS246/project/cc3k-villain/cmake-build-debug/CMakeFiles/cc3k_villain.dir
