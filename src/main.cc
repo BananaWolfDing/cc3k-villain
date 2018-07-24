@@ -6,8 +6,18 @@
 #include <iostream>
 #include <cstdlib>
 
-inline void gameOver() {
+inline bool gameOver() {
   std::cout << "You lose" << std::endl;
+  std::cout << "Enter 'r' to RESTART the game or enter 'q' to EXIT the game: " << std::endl;
+  std::string command;
+  while(std::getline(std::cin, command)){
+    if(command == "q"){
+      return false;
+    }
+    if(command == "r") {
+      return true;
+    }
+  }
 }
 
 inline bool game() {
@@ -56,15 +66,13 @@ inline bool game() {
       }
       if (PC->getHp() == 0) {
         gameFloor.paint(action);
-        gameOver();
-        return 0;
+        return gameOver();
       }
       if (gameFloor.passedFloor()) break;
         action += "\n        " + gameFloor.enemyTurn();
       if (PC->getHp() == 0) {
         gameFloor.paint(action);
-        gameOver();
-        return 0;
+        return gameOver();
       }
       gameFloor.paint(action);
     }
