@@ -6,11 +6,21 @@
 #include <iostream>
 #include <cstdlib>
 
-inline void gameOver() {
+inline bool gameOver() {
   std::cout << "You lose" << std::endl;
+  std::cout << "Enter 'r' to RESTART the game or enter 'q' to EXIT the game: " << std::endl;
+  std::string command;
+  while(std::getline(std::cin, command)){
+    if(command == "q"){
+      return false;
+    }
+    if(command == "r") {
+      return true;
+    }
+  }
 }
 
-inline bool game() {
+inline bool game(bool isMapGiven, std::string mapName) {
   std::cout << "Hello, welcome to CC3K...(we will add some words here later)" << std::endl;
   std::cout << "First, choose your race among Drow, Goblin, Shade, Troll and Vampire" << std::endl;
   std::string race;
@@ -42,7 +52,7 @@ inline bool game() {
   std::string command;
   for (int curFloor = 1; curFloor <= 5; curFloor++) {
     PC->reset();
-    floor gameFloor(readMap("map.txt"), PC, curFloor);
+    floor gameFloor(readMap(mapName), PC, curFloor,isMapGiven);
     gameFloor.paint("New floor!");
     while (std::getline(std::cin, command)) {
       if (command == "q")
@@ -56,15 +66,13 @@ inline bool game() {
       }
       if (PC->getHp() == 0) {
         gameFloor.paint(action);
-        gameOver();
-        return 0;
+        return gameOver();
       }
       if (gameFloor.passedFloor()) break;
         action += "\n" + gameFloor.enemyTurn();
       if (PC->getHp() == 0) {
         gameFloor.paint(action);
-        gameOver();
-        return 0;
+        return gameOver();
       }
       gameFloor.paint(action);
     }
@@ -74,9 +82,18 @@ inline bool game() {
   return false;
 }
 
-int main() {
-  srand((unsigned)time(NULL));
-  while (game())
-    std::cout << "Game restart!" << std::endl;
-  return 0;
+int main(int argc, char *argv[]) {
+  //read in given digital map
+  std::string fileName = "";
+  if(argc > 1){
+    fileName = argv[1];
+    game(true,fileName);
+  }
+  else{
+    srand((unsigned)time(NULL));
+    while (game(false,"../map.txt"))
+      std::cout << "Game restart!" << std::endl;
+    return 0;
+  }
+
 }

@@ -9,6 +9,7 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
+#include <fstream>
 
 inline bool inGrid(int x, int y) {
   return x >= 0 && x < gridHeight && y >= 0 && y < gridWidth;
@@ -19,25 +20,6 @@ inline void linkCells(cell *x, cell *y) {
   y->addNeighbour(x);
 }
 
-void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambers) {
-  for (int i = 0; i < chamberNum; i++) {
-    int n = chambers[i].size();
-    for (int j = 0; j < n; j++) {
-      int r = chambers[i][j].first;
-      int c = chambers[i][j].second;
-      grid[r][c] = new cell(r, c);
-      grid[r][c]->setPC(PC);
-    }
-  }
-
-  for (int i = 0; i < gridHeight; i++)
-    for (int j = 0; j < gridWidth; j++) {
-      if (inGrid(i, j + 1) && grid[i][j] != nullptr && grid[i][j + 1] != nullptr)
-        linkCells(grid[i][j], grid[i][j + 1]);
-      if (inGrid(i + 1, j) && grid[i][j] != nullptr && grid[i + 1][j] != nullptr)
-        linkCells(grid[i][j], grid[i + 1][j]);
-    }
-}
 
 void floor::createPlayer(player *PC) {
   int n = rand() % chamberNum;
@@ -127,14 +109,13 @@ void floor::createEnemy() {
   }
 }
 
-floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum):
-    map{map}, freezeEnemy{false}, PC{PC}, whichFloor{floorNum} {
+floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum, bool mapGiven):
+    map{map}, freezeEnemy{false}, PC{PC}, whichFloor{floorNum}, givenFullMap{mapGiven} {
   grid.resize(gridHeight, std::vector<cell *>(gridWidth));
   map.resize(gridHeight, std::vector<char>(gridWidth));
   std::vector<std::vector<std::pair<int, int>>> chamberCell;
-
   findChamber(map, chamberCell);
-  buildGrid(chamberCell);
+    buildGrid(chamberCell);
   for (int i = 0; i < chamberNum; i++) {
     chamber *cham = new chamber;
     for (auto itr = chamberCell[i].begin(); itr != chamberCell[i].end(); itr++)
@@ -143,10 +124,59 @@ floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum):
   }
 
   createPlayer(PC);
-  createStair();
-  createPotion();
-  createGold();
-  createEnemy();
+  if(!givenFullMap) {
+    createStair();
+    createPotion();
+    createGold();
+    createEnemy();
+  }
+}
+
+void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambers) {
+  for (int i = 0; i < chamberNum; i++) {
+    int n = chambers[i].size();
+    for (int j = 0; j < n; j++) {
+      int r = chambers[i][j].first;
+      int c = chambers[i][j].second;
+      if(map[r][c] == '.') {
+        grid[r][c] = new cell(r, c);
+      } else if(map[r][c] == '0'){
+        grid[r][c] = new restoreHealth();
+      } else if(map[r][c] == '1'){
+        grid[r][c] = new boostAttack();
+      } else if(map[r][c] == '2') {
+        grid[r][c] = new boostDefence();
+      } else if(map[r][c] == '3') {
+        grid[r][c] = new poisonHealth();
+      } else if(map[r][c] == '4') {
+        grid[r][c] = new woundAttack();
+      } else if(map[r][c] == '5') {
+        grid[r][c] = new woundDefence();
+      } else if(map[r][c] == '6') {
+        grid[r][c] = new gold(2);
+      } else if(map[r][c] == '7') {
+        grid[r][c] = new gold(1);
+      } else if(map[r][c] == '8') {
+        grid[r][c] = new gold(4);
+      } else if(map[r][c] == '9') {
+        grid[r][c] = new gold(6);
+        for (int i = 0; i < 8; i++)
+          if (inGrid(r + XMove[i], c + YMove[i]) && map[r + XMove[i]][c + YMove[i]] == 'D') {
+            grid[r + XMove[i]][c + YMove[i]] = new dragon(grid[r][c]);
+          }
+      }
+      map[r][c] = grid[r][c]->getDisplay();
+      grid[r][c]->setPC(PC);
+    }
+  }
+
+  for (int i = 0; i < gridHeight; i++)
+    for (int j = 0; j < gridWidth; j++) {
+      if (inGrid(i, j + 1) && grid[i][j] != nullptr && grid[i][j + 1] != nullptr)
+        linkCells(grid[i][j], grid[i][j + 1]);
+      if (inGrid(i + 1, j) && grid[i][j] != nullptr && grid[i + 1][j] != nullptr)
+        linkCells(grid[i][j], grid[i + 1][j]);
+    }
 }
 
 floor::~floor() {
