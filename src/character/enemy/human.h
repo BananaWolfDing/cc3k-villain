@@ -4,7 +4,6 @@
 #include "enemy.h"
 
 class human : public enemy {
-  void die(player &killer) override;
 public:
   human();
 };

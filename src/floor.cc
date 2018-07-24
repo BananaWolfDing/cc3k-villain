@@ -167,7 +167,6 @@ std::string floor::PCMove(std::string dir) {
   int y = PC->getCol();
   int aimX = x + XMove[dirIndex(dir)];
   int aimY = y + YMove[dirIndex(dir)];
-//  std::cout << x << ' ' << y << ' '<< aimX << ' ' << aimY << std::endl;
   std::string action = "";
 
   if (!inGrid(aimX, aimY))
@@ -249,36 +248,53 @@ std::string floor::PCAttack(std::string dir) {
   else if (!grid[aimX][aimY]->isCharacter())
     return "There is no enemy in " + formal[dirIndex(dir)];
   else {
-    int damage = PC->attack(*grid[aimX][aimY]);
-    action = "PC attacks " + grid[aimX][aimY]->getRace();
-    if (damage)
-      action += " and deals " + std::to_string(damage) + " damage";
-    else
-      action += " but missed";
+    action = PC->attack(*grid[aimX][aimY]);
+
     if (grid[aimX][aimY]->getHp() == 0) {
       grid[aimX][aimY]->die(*PC);
       action += " and killed it";
-      if(grid[aimX][aimY]->getRace() == "Merchant"){
+      if(grid[aimX][aimY]->getRace() == "Merchant") {
         gold *newMerchantHoard = new gold(4);
         newMerchantHoard->replaceCell(grid[aimX][aimY]);
         grid[aimX][aimY] = newMerchantHoard;
         map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
-        std::cout << "Merchant is replaced by " << grid[aimX][aimY]->getRace() << std::endl;
-      }else if(grid[aimX][aimY]->getRace() == "Merchant") {
-        std::cout << "human killed generate gold. CODE is to be completed....." << std::endl;
-      }else {
-        for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
-          if (*itr == grid[aimX][aimY]) {
-            enemies.erase(itr);
-            break;
-          }
+      }
+      else if(grid[aimX][aimY]->getRace() == "Human") {
+        gold *newHumanHoard = new gold(2);
+        newHumanHoard->replaceCell(grid[aimX][aimY]);
+        grid[aimX][aimY] = newHumanHoard;
+        map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
+
+        std::vector<cell *> possibleMoves;
+        for (int i = 0; i < 8; i++)
+          if (inGrid(aimX + XMove[i], aimY + YMove[i]) && map[aimX + XMove[i]][aimY + YMove[i]] == '.' &&
+                  (aimX + XMove[i] != PC->getRow() || aimY + YMove[i] != PC->getCol()))
+            possibleMoves.push_back(grid[aimX + XMove[i]][aimY + YMove[i]]);
+
+        int s = possibleMoves.size();
+        if (s) {
+          cell *c = possibleMoves[rand() % s];
+          int xx = c->getRow();
+          int yy = c->getCol();
+
+          newHumanHoard = new gold(2);
+          newHumanHoard->replaceCell(c);
+          grid[xx][yy] = newHumanHoard;
+          map[xx][yy] = grid[xx][yy]->getDisplay();
+        }
+      }
+
+      for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
+        if (*itr == grid[aimX][aimY]) {
+          enemies.erase(itr);
+          break;
+        }
         cell *newCell = new cell(aimX, aimY);
         newCell->replaceCell(grid[aimX][aimY]);
         grid[aimX][aimY] = newCell;
         map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
         // delete grid[aimX][aimY];
       }
-    }
 
     action += "!";
   }
@@ -326,36 +342,17 @@ std::string floor::enemyTurn() {
   for (auto itr = enemies.begin(); itr != enemies.end(); itr++) {
     if (std::abs(PC->getRow() - (*itr)->getRow()) <= 1 &&
         std::abs(PC->getCol() - (*itr)->getCol()) <= 1 &&
-        (*itr)->getName() != "dragon") {
-      int damage = (*itr)->attack(*PC);
-      action += (*itr)->getRace() + " attacks PC";
-      if (damage)
-        action += " and deals " + std::to_string(damage) + " damage.\n";
-      else
-        action += " but missed.\n";
-    } else if ((*itr)->getName() == "dragon"){
+        (*itr)->getName() != "dragon")
+      action += (*itr)->attack(*PC);
+    else if ((*itr)->getName() == "dragon") {
       bool is_attack = false;
       if (std::abs(PC->getRow() - (*itr)->getRow()) <= 1 &&
           std::abs(PC->getCol() - (*itr)->getCol()) <= 1) {
-        int damage = (*itr)->attack(*PC);
-        action += (*itr)->getRace() + " attacks PC";
-        if (damage) {
-          action += " and deals " + std::to_string(damage) + " damage.\n";
-          is_attack = true;
-        }
-        else
-          action += " but missed.\n";
-      }
+        action += (*itr)->attack(*PC);
       if (is_attack == false) {
           if (std::abs(PC->getRow() - (*itr)->getGuard()->getRow()) <= 1 &&
-              std::abs(PC->getCol() - (*itr)->getGuard()->getCol()) <= 1) {
-              int damage = (*itr)->attack(*PC);
-              action += (*itr)->getRace() + " attacks PC";
-              if (damage)
-                  action += " and deals " + std::to_string(damage) + " damage.\n";
-              else
-                  action += " but missed.\n";
-          }
+              std::abs(PC->getCol() - (*itr)->getGuard()->getCol()) <= 1)
+              action += (*itr)->attack(*PC);
       }
     }
     else if ((*itr)->getRace() != "dragon") {
@@ -407,5 +404,5 @@ void floor::paint(std::string action) const {
   std::cout << "HP: " << PC->getHp() << std::endl;
   std::cout << "Atk: " << PC->getAtk() << std::endl;
   std::cout << "Def: " << PC->getDef() << std::endl;
-  std::cout << "Action: " << action << std::endl;
+  std::cout << "Action:\n" << action << std::endl;
 }

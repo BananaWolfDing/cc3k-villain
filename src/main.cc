@@ -55,12 +55,14 @@ inline bool game() {
         continue;
       }
       if (PC->getHp() == 0) {
+        gameFloor.paint(action);
         gameOver();
         return 0;
       }
       if (gameFloor.passedFloor()) break;
-        action += "\n        " + gameFloor.enemyTurn();
+        action += "\n" + gameFloor.enemyTurn();
       if (PC->getHp() == 0) {
+        gameFloor.paint(action);
         gameOver();
         return 0;
       }
