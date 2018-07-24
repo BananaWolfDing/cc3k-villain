@@ -346,18 +346,16 @@ std::string floor::enemyTurn() {
         else
           action += " but missed.\n";
       }
-      else {
-        if (is_attack == false) {
+      if (is_attack == false) {
           if (std::abs(PC->getRow() - (*itr)->getGuard()->getRow()) <= 1 &&
               std::abs(PC->getCol() - (*itr)->getGuard()->getCol()) <= 1) {
-            int damage = (*itr)->attack(*PC);
-            action += (*itr)->getRace() + " attacks PC";
-            if (damage)
-              action += " and deals " + std::to_string(damage) + " damage.\n";
-            else
-              action += " but missed.\n";
+              int damage = (*itr)->attack(*PC);
+              action += (*itr)->getRace() + " attacks PC";
+              if (damage)
+                  action += " and deals " + std::to_string(damage) + " damage.\n";
+              else
+                  action += " but missed.\n";
           }
-        }
       }
     }
     else if ((*itr)->getRace() != "dragon") {
