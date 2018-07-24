@@ -34,6 +34,10 @@ CMakeFiles/cc3k_villain.dir/src/chamber.cc.o: ../src/item/potions/woundAttack.h
 CMakeFiles/cc3k_villain.dir/src/chamber.cc.o: ../src/item/potions/woundDefence.h
 CMakeFiles/cc3k_villain.dir/src/chamber.cc.o: ../src/potion.h
 
+CMakeFiles/cc3k_villain.dir/src/character.cc.o: ../src/character.h
+CMakeFiles/cc3k_villain.dir/src/character.cc.o: ../src/character/enemy/enemy.h
+CMakeFiles/cc3k_villain.dir/src/character.cc.o: ../src/character/enemy/merchant.h
+CMakeFiles/cc3k_villain.dir/src/character.cc.o: ../src/character/player/player.h
 CMakeFiles/cc3k_villain.dir/src/character.cc.o: ../src/cell.h
 CMakeFiles/cc3k_villain.dir/src/character.cc.o: ../src/character.cc
 CMakeFiles/cc3k_villain.dir/src/character.cc.o: ../src/character.h

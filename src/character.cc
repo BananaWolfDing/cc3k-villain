@@ -2,6 +2,9 @@
 #include <cmath>
 #include "character.h"
 #include <iostream>
+#include "enemy/merchant.h"
+#include "enemy/enemy.h"
+
 character::character(int hp, int atk, int def, std::string race, char display):
   hp{hp}, hpMax{hp}, atk{atk}, stdAtk{atk}, def{def}, stdDef{def},
   race{race} {
@@ -59,6 +62,13 @@ int character::attack(cell &defender) {
 }
 
 int character::defend(cell &attacker) {
+  if(this->getName() == "Merchant"){
+    enemy *e = dynamic_cast<enemy *>(this);
+    merchant *m = dynamic_cast<merchant *>(e);
+    m->becomeHostile();
+    std::cout << "Merchant is neutral or not: "<< m->isNeutral() << std::endl;
+
+  }
   int damage = std::min(getHp(), (int) ceil(100 * attacker.getAtk() / (100 + getDef())));
   addHp(-damage);
   return damage;

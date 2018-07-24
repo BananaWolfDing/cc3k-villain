@@ -6,6 +6,30 @@
 
 #IncludeRegexTransform: 
 
+../src/character.h
+vector
+-
+string
+-
+potion.h
+../src/potion.h
+cell.h
+../src/cell.h
+
+../src/character/enemy/enemy.h
+../player/player.h
+../src/character/player/player.h
+
+../src/character/enemy/merchant.h
+enemy.h
+../src/character/enemy/enemy.h
+
+../src/character/player/player.h
+../../character.h
+../src/character.h
+string
+-
+
 /Users/sunshuyi/Desktop/CS246/project/cc3k-villain/src/cell.cc
 cell.h
 /Users/sunshuyi/Desktop/CS246/project/cc3k-villain/src/cell.h
@@ -57,6 +81,10 @@ character.h
 /Users/sunshuyi/Desktop/CS246/project/cc3k-villain/src/character.h
 iostream
 -
+enemy/merchant.h
+/Users/sunshuyi/Desktop/CS246/project/cc3k-villain/src/enemy/merchant.h
+enemy/enemy.h
+/Users/sunshuyi/Desktop/CS246/project/cc3k-villain/src/enemy/enemy.h
 
 /Users/sunshuyi/Desktop/CS246/project/cc3k-villain/src/character.h
 vector

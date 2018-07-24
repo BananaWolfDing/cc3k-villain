@@ -9,7 +9,6 @@ int merchant::attack(cell &defender) {
     if (rand() % 2)
       return defender.defend(*this);
   }
-
   return 0;
 }
 
@@ -17,4 +16,8 @@ bool merchant::isNeutral() const {
   return neutral;
 }
 
-void merchant::die(player &) {}
+void merchant::becomeHostile() {
+  neutral = false;
+}
+
+void merchant::die(player &PC) {}
