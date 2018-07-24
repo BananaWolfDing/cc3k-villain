@@ -10,6 +10,7 @@ public:
   bool isNeutral() const;
   int attack(cell &defender) override;
   void die(player &PC) override;
+  void becomeHostile();
 };
 
 #endif
