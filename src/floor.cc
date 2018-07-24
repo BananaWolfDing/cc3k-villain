@@ -258,14 +258,26 @@ std::string floor::PCAttack(std::string dir) {
     if (grid[aimX][aimY]->getHp() == 0) {
       grid[aimX][aimY]->die(*PC);
       action += " and killed it";
+      if(grid[aimX][aimY]->getRace() == "Merchant"){
+        gold *newMerchantHoard = new gold(4);
+        newMerchantHoard->replaceCell(grid[aimX][aimY]);
+        grid[aimX][aimY] = newMerchantHoard;
+        map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
+        std::cout << "Merchant is replaced by " << grid[aimX][aimY]->getRace() << std::endl;
+      }else if(grid[aimX][aimY]->getRace() == "Merchant") {
+        std::cout << "human killed generate gold. CODE is to be completed....." << std::endl;
+      }else {
       for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
-        if (*itr == grid[aimX][aimY])
+        if (*itr == grid[aimX][aimY]){
           enemies.erase(itr);
+          break;
+        }
 
       cell *newCell = new cell(aimX, aimY);
       newCell->replaceCell(grid[aimX][aimY]);
       grid[aimX][aimY] = newCell;
       map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
+      }
       // delete grid[aimX][aimY];
     }
 
