@@ -69,7 +69,7 @@ inline bool game(bool isMapGiven, std::string mapName) {
         return gameOver();
       }
       if (gameFloor.passedFloor()) break;
-        action += "\n        " + gameFloor.enemyTurn();
+        action += "\n" + gameFloor.enemyTurn();
       if (PC->getHp() == 0) {
         gameFloor.paint(action);
         return gameOver();

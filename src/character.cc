@@ -1,9 +1,9 @@
-#include <algorithm> // Can we use this for max()?
+#include <algorithm>
 #include <cmath>
 #include "character.h"
 #include <iostream>
-#include "enemy/merchant.h"
-#include "enemy/enemy.h"
+#include "character/enemy/merchant.h"
+#include "character/enemy/enemy.h"
 
 character::character(int hp, int atk, int def, std::string race, char display):
   hp{hp}, hpMax{hp}, atk{atk}, stdAtk{atk}, def{def}, stdDef{def},
@@ -57,8 +57,16 @@ void character::setGuard(item *treasure) {
   guard = treasure;
 }
 
-int character::attack(cell &defender) {
-  return defender.defend(*this);
+std::string character::attack(cell &defender) {
+  int damage = defender.defend(*this);
+
+  std::string action = getName() + " attacks " + defender.getName();
+  if (damage)
+    action += " and deals " + std::to_string(damage) + " damage";
+  else
+    action += " but missed";
+
+  return action;
 }
 
 int character::defend(cell &attacker) {

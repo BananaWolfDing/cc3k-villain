@@ -4,12 +4,22 @@
 
 merchant::merchant(): enemy{30, 70, 5, "Merchant", 'M'} {}
 
-int merchant::attack(cell &defender) {
+std::string merchant::attack(cell &defender) {
   if (!isNeutral()) {
+    int damage = 0;
     if (rand() % 2)
-      return defender.defend(*this);
+      damage = defender.defend(*this);
+
+    std::string action = getName() + " attacks " + defender.getName();
+    if (damage)
+      action += " and deals " + std::to_string(damage) + " damage";
+    else
+      action += " but missed";
+
+    return action;
   }
-  return 0;
+  else
+    return "";
 }
 
 bool merchant::isNeutral() const {

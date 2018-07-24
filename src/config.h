@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-const int gridWidth = 80;
+const int gridWidth = 79;
 const int gridHeight = 25;
 const int chamberNum = 5;
 const int potionKinds = 6;

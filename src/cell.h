@@ -49,7 +49,7 @@ public:
   virtual void setGuardian(enemy *) {}
   virtual int getAtk() const {return 0;}
   virtual int defend(cell &) {return 0;}
-  virtual int attack(cell &) {return 0;}
+  virtual std::string attack(cell &) {return "";}
   virtual cell *getGuard() const {return nullptr;}
 };
 

@@ -6,7 +6,7 @@ class vampire : public player {
 public:
   vampire();
   void addHp(int inc);
-  int attack(cell &defender);
+  std::string attack(cell &defender);
 };
 
 #endif
