@@ -363,7 +363,6 @@ std::string floor::enemyTurn() {
       }
     }
   }
-}
 
   return action;
 }
