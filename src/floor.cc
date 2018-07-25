@@ -112,7 +112,7 @@ void floor::createEnemy() {
 floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum, bool mapGiven):
     map{map}, freezeEnemy{false}, PC{PC}, whichFloor{floorNum}, givenFullMap{mapGiven} {
   grid.resize(gridHeight, std::vector<cell *>(gridWidth));
-  map.resize(gridHeight, std::vector<char>(gridWidth));
+  if(!givenFullMap) map.resize(gridHeight, std::vector<char>(gridWidth));
   std::vector<std::vector<std::pair<int, int>>> chamberCell;
   findChamber(map, chamberCell);
   buildGrid(chamberCell);
@@ -142,15 +142,15 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
       int c = chambers[i][j].second;
       if(map[r][c] == '.') {
         grid[r][c] = new cell(r, c);
-      } else if(map[r][c] = 'M') {
-        grid[r][c] = new merchant();
-      } else if(map[r][c] = 'W') {
+      } else if(map[r][c] == 'W') {
         grid[r][c] = new dwarf();
-      } else if(map[r][c] = 'E') {
+      } else if(map[r][c] == 'M') {
+        grid[r][c] = new merchant();
+      } else if(map[r][c] == 'E') {
         grid[r][c] = new elf();
-      } else if(map[r][c] = 'O') {
+      } else if(map[r][c] == 'O') {
         grid[r][c] = new orc();
-      } else if(map[r][c] = 'H') {
+      } else if(map[r][c] == 'L') {
         grid[r][c] = new halfling();
       } else if(map[r][c] == '0'){
         grid[r][c] = new restoreHealth();
@@ -179,6 +179,9 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
       }
       map[r][c] = grid[r][c]->getDisplay();
       grid[r][c]->setPC(PC);
+      grid[r][c]->setRow(r);
+      grid[r][c]->setCol(c);
+      enemies.push_back(grid[r][c]);
     }
   }
 
