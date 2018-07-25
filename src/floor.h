@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include "cell.h"
 #include "chamber.h"
+#include "window.h"
 
 class floor {
     std::vector<std::vector<char>> map;
@@ -34,7 +35,7 @@ public:
     bool passedFloor() const;
     std::string PCTurn(std::string command);
     std::string enemyTurn();
-    void paint(std::string action) const;
+    void paint(std::string action, Xwindow *win = nullptr) const;
 };
 
 #endif

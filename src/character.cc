@@ -70,12 +70,11 @@ std::string character::attack(cell &defender) {
 }
 
 int character::defend(cell &attacker) {
-  if(this->getName() == "Merchant"){
+  if(getRace() == "Merchant"){
     enemy *e = dynamic_cast<enemy *>(this);
     merchant *m = dynamic_cast<merchant *>(e);
     m->becomeHostile();
     std::cout << "Merchant is neutral or not: "<< m->isNeutral() << std::endl;
-
   }
   int damage = std::min(getHp(), (int) ceil(100 * attacker.getAtk() / (100 + getDef())));
   addHp(-damage);
