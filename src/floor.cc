@@ -154,8 +154,10 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
         grid[r][c] = new elf();
       } else if(map[r][c] == 'O') {
         grid[r][c] = new orc();
+      } else if(map[r][c] == 'H') {
+        grid[r][c] = new human();
       } else if(map[r][c] == 'L') {
-        grid[r][c] = new halfling();
+          grid[r][c] = new halfling();
       } else if(map[r][c] == '0'){
         grid[r][c] = new restoreHealth();
       } else if(map[r][c] == '1'){
@@ -183,7 +185,10 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
       grid[r][c]->setPC(PC);
       grid[r][c]->setRow(r);
       grid[r][c]->setCol(c);
-      enemies.push_back(grid[r][c]);
+      if(grid[r][c]->getDisplay() == 'H'|| grid[r][c]->getDisplay() == 'W' || grid[r][c]->getDisplay() == 'E'
+        grid[r][c]->getDisplay() == 'O' || grid[r][c]->getDisplay() == 'M' || grid[r][c]->getDisplay() == 'L') {
+        enemies.push_back(grid[r][c]);
+      }
     }
   }
   for(int i = 0; i < Dr.size(); i++) {
@@ -193,6 +198,11 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
       for (int c = -1; c <= 1; c++) {
         if(grid[x+r][y+c]->getAmount() == 6) {
           grid[x][y] = new dragon(grid[x+r][y+c]);
+          map[x][y] = grid[x][y]->getDisplay();
+          grid[x][y]->setPC(PC);
+          grid[x][y]->setRow(r);
+          grid[x][y]->setCol(c);
+          enemies.push_back(grid[x][y]);
         }
       }
     }
