@@ -2,6 +2,7 @@
 #include "readMap.h"
 #include "character/allCharacters.h"
 #include "item/allItems.h"
+#include "window.h"
 #include <string>
 #include <iostream>
 #include <cstdlib>
@@ -21,6 +22,7 @@ inline bool gameOver() {
 }
 
 inline bool game(bool isMapGiven, std::string mapName) {
+  Xwindow *win = new Xwindow(1000, 600);
   std::cout << "Hello, welcome to CC3K...(we will add some words here later)" << std::endl;
   std::cout << "First, choose your race among Drow, Goblin, Shade, Troll and Vampire" << std::endl;
   std::string race;
@@ -53,14 +55,16 @@ inline bool game(bool isMapGiven, std::string mapName) {
   for (int curFloor = 1; curFloor <= 5; curFloor++) {
     PC->reset();
     floor gameFloor(readMap(mapName), PC, curFloor,isMapGiven);
-    gameFloor.paint("New floor!");
+    gameFloor.paint("New floor!", win);
     while (std::getline(std::cin, command)) {
       if (command == "q") {
         delete PC;
+        delete win;
         return false;
       }
       if (command == "r") {
         delete PC;
+        delete win;
         return true;
       }
       std::string action = gameFloor.PCTurn(command);
@@ -69,8 +73,9 @@ inline bool game(bool isMapGiven, std::string mapName) {
         continue;
       }
       if (PC->getHp() == 0) {
-        gameFloor.paint(action);
+        gameFloor.paint(action, win);
         delete PC;
+        delete win;
         return gameOver();
       }
       if (gameFloor.passedFloor()) break;
@@ -78,13 +83,16 @@ inline bool game(bool isMapGiven, std::string mapName) {
       if (PC->getHp() == 0) {
         gameFloor.paint(action);
         delete PC;
+        delete win;
         return gameOver();
       }
-      gameFloor.paint(action);
+      gameFloor.paint(action, win);
     }
   }
 
   std::cout << "You win! Score :" << PC->getGold() << std::endl;
+  delete PC;
+  delete win;
   return false;
 }
 
