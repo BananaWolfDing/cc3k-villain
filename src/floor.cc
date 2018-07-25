@@ -176,6 +176,10 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
         linkCells(grid[i][j], grid[i][j + 1]);
       if (inGrid(i + 1, j) && grid[i][j] != nullptr && grid[i + 1][j] != nullptr)
         linkCells(grid[i][j], grid[i + 1][j]);
+      if (inGrid(i + 1, j + 1) && grid[i][j] != nullptr && grid[i + 1][j + 1] != nullptr)
+        linkCells(grid[i][j], grid[i + 1][j + 1]);
+      if (inGrid(i + 1, j - 1) && grid[i][j] != nullptr && grid[i + 1][j - 1] != nullptr)
+        linkCells(grid[i][j], grid[i + 1][j - 1]);
     }
 }
 
@@ -259,8 +263,8 @@ std::string floor::PCUsePotion(std::string dir) {
     std::string p = grid[aimX][aimY]->getName();
     grid[aimX][aimY]->use();
     cell *newCell = new cell(aimX, aimY);
-    newCell->replaceCell(grid[aimX][aimY]);
     grid[aimX][aimY] = newCell;
+    newCell->replaceCell(grid[aimX][aimY]);
     map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
     return "PC uses " + p;
   }
@@ -275,21 +279,32 @@ std::string floor::PCAttack(std::string dir) {
 
   if (!inGrid(aimX, aimY))
     return "Invalid direction!";
-  else if (!grid[aimX][aimY]->isCharacter())
+  else if (map[aimX][aimY] == '-' || map[aimX][aimY] == '|' || map[aimX][aimY] == '+' ||
+           map[aimX][aimY] == ' ' || map[aimX][aimY] == '#' || !grid[aimX][aimY]->isCharacter())
     return "There is no enemy in " + formal[dirIndex(dir)];
   else {
     action = PC->attack(*grid[aimX][aimY]);
-
     if (grid[aimX][aimY]->getHp() == 0) {
+      std::string deadEnemy = grid[aimX][aimY]->getRace();
       grid[aimX][aimY]->die(*PC);
       action += " and killed it";
-      if(grid[aimX][aimY]->getRace() == "Merchant") {
+      for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
+        if (*itr == grid[aimX][aimY]) {
+          enemies.erase(itr);
+          break;
+        }
+        cell *newCell = new cell(aimX, aimY);
+        newCell->replaceCell(grid[aimX][aimY]);
+        grid[aimX][aimY] = newCell;
+        map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
+
+      if(deadEnemy == "Merchant") {
         gold *newMerchantHoard = new gold(4);
         newMerchantHoard->replaceCell(grid[aimX][aimY]);
         grid[aimX][aimY] = newMerchantHoard;
         map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
       }
-      else if(grid[aimX][aimY]->getRace() == "Human") {
+      else if(deadEnemy == "Human") {
         gold *newHumanHoard = new gold(2);
         newHumanHoard->replaceCell(grid[aimX][aimY]);
         grid[aimX][aimY] = newHumanHoard;
@@ -313,19 +328,7 @@ std::string floor::PCAttack(std::string dir) {
           map[xx][yy] = grid[xx][yy]->getDisplay();
         }
       }
-
-      for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
-        if (*itr == grid[aimX][aimY]) {
-          enemies.erase(itr);
-          break;
-        }
-        cell *newCell = new cell(aimX, aimY);
-        newCell->replaceCell(grid[aimX][aimY]);
-        grid[aimX][aimY] = newCell;
-        map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
-        // delete grid[aimX][aimY];
-      }
-
+    }
     action += "!";
   }
 

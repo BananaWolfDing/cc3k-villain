@@ -55,10 +55,14 @@ inline bool game(bool isMapGiven, std::string mapName) {
     floor gameFloor(readMap(mapName), PC, curFloor,isMapGiven);
     gameFloor.paint("New floor!");
     while (std::getline(std::cin, command)) {
-      if (command == "q")
+      if (command == "q") {
+        delete PC;
         return false;
-      if (command == "r")
+      }
+      if (command == "r") {
+        delete PC;
         return true;
+      }
       std::string action = gameFloor.PCTurn(command);
       if (action == "?") {
         std::cout << "Invalid input" << std::endl;
@@ -66,12 +70,14 @@ inline bool game(bool isMapGiven, std::string mapName) {
       }
       if (PC->getHp() == 0) {
         gameFloor.paint(action);
+        delete PC;
         return gameOver();
       }
       if (gameFloor.passedFloor()) break;
-        action += "\n" + gameFloor.enemyTurn();
+      action += "\n" + gameFloor.enemyTurn();
       if (PC->getHp() == 0) {
         gameFloor.paint(action);
+        delete PC;
         return gameOver();
       }
       gameFloor.paint(action);
@@ -91,7 +97,7 @@ int main(int argc, char *argv[]) {
   }
   else{
     srand((unsigned)time(NULL));
-    while (game(false,"../map.txt"))
+    while (game(false,"map.txt"))
       std::cout << "Game restart!" << std::endl;
     return 0;
   }
