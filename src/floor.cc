@@ -125,6 +125,8 @@ floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum, bool 
     chambers.push_back(cham);
   }
 
+
+
   createPlayer(PC);
   if(!givenFullMap) {
     createStair();
