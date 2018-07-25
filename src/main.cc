@@ -151,7 +151,7 @@ int main(int argc, char *argv[]) {
   }
   else{
     srand((unsigned)time(NULL));
-    while (game(false,"../map.txt"))
+    while (game(false,"map.txt"))
       std::cout << "Game restart!" << std::endl;
     return 0;
   }
