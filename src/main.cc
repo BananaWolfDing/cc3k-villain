@@ -64,21 +64,16 @@ inline bool game(bool isMapGiven, std::string mapName) {
     std::vector<std::vector<char>> tmprows;
     std::ifstream mapin(mapName);
     for (int count = 0; count < 5; count++) {
-      std::cout << "9" << std::endl;
       for (int i = 0; i < 25; i++) {
-        std::cout << "2 ";
         std::getline(mapin, row);
         std::vector<char> singleRow(row.begin(), row.end());
         tmprows.push_back(singleRow);
       }
-
-
       floors.push_back(tmprows);
-
       count++;
     }
     for (int curFloor = 0; curFloor <= 4; curFloor++) {
-      std::cout << "enter floor" << std::endl;
+      std::cout << "enter floor" << curFloor << std::endl;
       PC->reset();
       floor gameFloor(floors[curFloor], PC, curFloor, isMapGiven);
       gameFloor.paint("New floor!");

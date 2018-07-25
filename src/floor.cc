@@ -115,9 +115,7 @@ floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum, bool 
   map.resize(gridHeight, std::vector<char>(gridWidth));
   std::vector<std::vector<std::pair<int, int>>> chamberCell;
   findChamber(map, chamberCell);
-  std::cout << "chamber ok" << std::endl;
-    buildGrid(chamberCell);
-    std::cout << "build ok" << std:: endl;
+  buildGrid(chamberCell);
   for (int i = 0; i < chamberNum; i++) {
     chamber *cham = new chamber;
     for (auto itr = chamberCell[i].begin(); itr != chamberCell[i].end(); itr++)
@@ -144,6 +142,16 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
       int c = chambers[i][j].second;
       if(map[r][c] == '.') {
         grid[r][c] = new cell(r, c);
+      } else if(map[r][c] = 'M') {
+        grid[r][c] = new merchant();
+      } else if(map[r][c] = 'W') {
+        grid[r][c] = new dwarf();
+      } else if(map[r][c] = 'E') {
+        grid[r][c] = new elf();
+      } else if(map[r][c] = 'O') {
+        grid[r][c] = new orc();
+      } else if(map[r][c] = 'H') {
+        grid[r][c] = new halfling();
       } else if(map[r][c] == '0'){
         grid[r][c] = new restoreHealth();
       } else if(map[r][c] == '1'){
