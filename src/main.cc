@@ -26,23 +26,23 @@ inline bool game(bool isMapGiven, std::string mapName) {
   std::string race;
   player *PC;
   while (std::getline(std::cin, race))
-    if (race == "Drow") {
+    if (race == "d") {
       PC = new drow;
       break;
     }
-    else if (race == "Goblin") {
+    else if (race == "g") {
       PC = new goblin;
       break;
     }
-    else if (race == "Shade") {
+    else if (race == "s") {
       PC = new shade;
       break;
     }
-    else if (race == "Troll") {
+    else if (race == "t") {
       PC = new troll;
       break;
     }
-    else if (race == "Vampire") {
+    else if (race == "v") {
       PC = new vampire;
       break;
     }
@@ -95,5 +95,4 @@ int main(int argc, char *argv[]) {
       std::cout << "Game restart!" << std::endl;
     return 0;
   }
-
 }
