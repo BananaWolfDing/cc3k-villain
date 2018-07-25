@@ -185,7 +185,7 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
       grid[r][c]->setPC(PC);
       grid[r][c]->setRow(r);
       grid[r][c]->setCol(c);
-      if(grid[r][c]->getDisplay() == 'H'|| grid[r][c]->getDisplay() == 'W' || grid[r][c]->getDisplay() == 'E'
+      if(grid[r][c]->getDisplay() == 'H'|| grid[r][c]->getDisplay() == 'W' || grid[r][c]->getDisplay() == 'E' ||
         grid[r][c]->getDisplay() == 'O' || grid[r][c]->getDisplay() == 'M' || grid[r][c]->getDisplay() == 'L') {
         enemies.push_back(grid[r][c]);
       }
