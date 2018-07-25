@@ -24,7 +24,6 @@ class floor {
     int whichFloor;
 
     void buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambers);
-    void buildGridBaseOnMap();
     void createPlayer(player *PC);
     void createStair();
     void createPotion();

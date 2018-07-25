@@ -10,14 +10,14 @@ class character;
 class item : public cell {
 protected:
   std::string name;
-  enemy *guardian;
+  cell *guardian;
 public:
-  item(std::string name, char display, enemy *guardian = nullptr);
+  item(std::string name, char display, cell *guardian = nullptr);
 
   char getDisplay() const;
   std::string getName() const;
-  enemy *getGuardian() const;
-  void setGuardian(enemy *guardian);
+  cell *getGuardian() const;
+  void setGuardian(cell *guardian);
   virtual void use() = 0;
 };
 

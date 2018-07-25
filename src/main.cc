@@ -24,27 +24,27 @@ inline bool gameOver() {
 inline bool game(bool isMapGiven, std::string mapName) {
   Xwindow *win = new Xwindow(1000, 600);
   std::cout << "Hello, welcome to CC3K...(we will add some words here later)" << std::endl;
-  std::cout << "First, choose your race among Drow, Goblin, Shade, Troll and Vampire" << std::endl;
+  std::cout << "First, choose your race among Drow(d), Goblin(g), Shade(s), Troll(t) and Vampire(v)" << std::endl;
   std::string race;
   player *PC;
   while (std::getline(std::cin, race))
-    if (race == "Drow") {
+    if (race == "d") {
       PC = new drow;
       break;
     }
-    else if (race == "Goblin") {
+    else if (race == "g") {
       PC = new goblin;
       break;
     }
-    else if (race == "Shade") {
+    else if (race == "s") {
       PC = new shade;
       break;
     }
-    else if (race == "Troll") {
+    else if (race == "t") {
       PC = new troll;
       break;
     }
-    else if (race == "Vampire") {
+    else if (race == "v") {
       PC = new vampire;
       break;
     }
@@ -52,41 +52,86 @@ inline bool game(bool isMapGiven, std::string mapName) {
       std::cout << "Invalid input, please choose again." << std::endl;
 
   std::string command;
-  for (int curFloor = 1; curFloor <= 5; curFloor++) {
-    PC->reset();
-    floor gameFloor(readMap(mapName), PC, curFloor,isMapGiven);
-    gameFloor.paint("New floor!", win);
-    while (std::getline(std::cin, command)) {
-      if (command == "q") {
-        delete PC;
-        delete win;
-        return false;
+
+
+
+  //std::vector<a>
+  //std::vector<floor> [5]
+  //for random create player on first floor
+  // int i = 0;
+  // while ( i < 5){}
+    // if there is given map for 5 floor.
+  if(isMapGiven == true) {
+    std::vector<std::vector<std::vector<char>>> floors;
+    std::string row;
+    std::vector<std::vector<char>> tmprows;
+    std::ifstream mapin(mapName);
+    for (int count = 0; count < 5; count++) {
+      for (int i = 0; i < 25; i++) {
+        std::getline(mapin, row);
+        std::vector<char> singleRow(row.begin(), row.end());
+        tmprows.push_back(singleRow);
       }
-      if (command == "r") {
-        delete PC;
-        delete win;
-        return true;
-      }
-      std::string action = gameFloor.PCTurn(command);
-      if (action == "?") {
-        std::cout << "Invalid input" << std::endl;
-        continue;
-      }
-      if (PC->getHp() == 0) {
-        gameFloor.paint(action, win);
-        delete PC;
-        delete win;
-        return gameOver();
-      }
-      if (gameFloor.passedFloor()) break;
-      action += "\n" + gameFloor.enemyTurn();
-      if (PC->getHp() == 0) {
+      floors.push_back(tmprows);
+      count++;
+    }
+    for (int curFloor = 0; curFloor <= 4; curFloor++) {
+      std::cout << "enter floor" << curFloor << std::endl;
+      PC->reset();
+      floor gameFloor(floors[curFloor], PC, curFloor, isMapGiven);
+      gameFloor.paint("New floor!");
+      while (std::getline(std::cin, command)) {
+        if (command == "q")
+          return false;
+        if (command == "r")
+          return true;
+        std::string action = gameFloor.PCTurn(command);
+        if (action == "?") {
+          std::cout << "Invalid input" << std::endl;
+          continue;
+        }
+        if (PC->getHp() == 0) {
+          gameFloor.paint(action);
+          return gameOver();
+        }
+        if (gameFloor.passedFloor()) break;
+        action += "\n" + gameFloor.enemyTurn();
+        if (PC->getHp() == 0) {
+          gameFloor.paint(action);
+          return gameOver();
+        }
         gameFloor.paint(action);
-        delete PC;
-        delete win;
-        return gameOver();
       }
-      gameFloor.paint(action, win);
+    }
+  }
+
+  else {
+    for (int curFloor = 1; curFloor <= 5; curFloor++) {
+      PC->reset();
+      floor gameFloor(readMap(mapName), PC, curFloor, isMapGiven);
+      gameFloor.paint("New floor!");
+      while (std::getline(std::cin, command)) {
+        if (command == "q")
+          return false;
+        if (command == "r")
+          return true;
+        std::string action = gameFloor.PCTurn(command);
+        if (action == "?") {
+          std::cout << "Invalid input" << std::endl;
+          continue;
+        }
+        if (PC->getHp() == 0) {
+          gameFloor.paint(action);
+          return gameOver();
+        }
+        if (gameFloor.passedFloor()) break;
+        action += "\n" + gameFloor.enemyTurn();
+        if (PC->getHp() == 0) {
+          gameFloor.paint(action);
+          return gameOver();
+        }
+        gameFloor.paint(action);
+      }
     }
   }
 
@@ -109,5 +154,4 @@ int main(int argc, char *argv[]) {
       std::cout << "Game restart!" << std::endl;
     return 0;
   }
-
 }

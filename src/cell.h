@@ -39,14 +39,14 @@ public:
   int getCol() const;
   std::vector<cell *> getNeighbour() const;
 
-  virtual enemy *getGuardian() const {return nullptr;}
+  virtual cell *getGuardian() const {return nullptr;}
   virtual int getAmount() const {return 0;}
   virtual std::string getName() const {return "";}
   virtual void use() {}
   virtual std::string getRace() const {return "";}
   virtual int getHp() const {return 0;}
   virtual void die(player &) {}
-  virtual void setGuardian(enemy *) {}
+  virtual void setGuardian(cell *) {}
   virtual int getAtk() const {return 0;}
   virtual int defend(cell &) {return 0;}
   virtual std::string attack(cell &) {return "";}

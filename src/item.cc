@@ -1,6 +1,6 @@
 #include "item.h"
 
-item::item(std::string name, char display, enemy *guardian):
+item::item(std::string name, char display, cell *guardian):
   name{name}, guardian{guardian} {
   this->display = display;
   this->empty = false;
@@ -14,10 +14,10 @@ char item::getDisplay() const {
   return display;
 }
 
-void item::setGuardian(enemy *guardian) {
+void item::setGuardian(cell *guardian) {
   this->guardian = guardian;
 }
 
-enemy *item::getGuardian() const {
+cell *item::getGuardian() const {
   return guardian;
 }
