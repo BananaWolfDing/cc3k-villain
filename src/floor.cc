@@ -135,6 +135,7 @@ floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum, bool 
 }
 
 void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambers) {
+  std::vector<std::pair<int, int>> Dr;
   for (int i = 0; i < chamberNum; i++) {
     int n = chambers[i].size();
     for (int j = 0; j < n; j++) {
@@ -142,8 +143,11 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
       int c = chambers[i][j].second;
       if(map[r][c] == '.') {
         grid[r][c] = new cell(r, c);
+      } else if(map[r][c] == '\\') {
+        grid[r][c] = new cell(r, c);
+        grid[r][c]->setStair();
       } else if(map[r][c] == 'W') {
-        grid[r][c] = new dwarf();
+          grid[r][c] = new dwarf();
       } else if(map[r][c] == 'M') {
         grid[r][c] = new merchant();
       } else if(map[r][c] == 'E') {
@@ -172,16 +176,25 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
         grid[r][c] = new gold(4);
       } else if(map[r][c] == '9') {
         grid[r][c] = new gold(6);
-        for (int i = 0; i < 8; i++)
-          if (inGrid(r + XMove[i], c + YMove[i]) && map[r + XMove[i]][c + YMove[i]] == 'D') {
-            grid[r + XMove[i]][c + YMove[i]] = new dragon(grid[r][c]);
-          }
+      } else if(map[r][c] == 'D') {
+        Dr.push_back(std::make_pair(r,c));
       }
       map[r][c] = grid[r][c]->getDisplay();
       grid[r][c]->setPC(PC);
       grid[r][c]->setRow(r);
       grid[r][c]->setCol(c);
       enemies.push_back(grid[r][c]);
+    }
+  }
+  for(int i = 0; i < Dr.size(); i++) {
+    int x = Dr[i].first;
+    int y = Dr[i].second;
+    for(int r = -1; r <= 1; r++) {
+      for (int c = -1; c <= 1; c++) {
+        if(grid[x+r][y+c]->getAmount() == 6) {
+          grid[x][y] = new dragon(grid[x+r][y+c]);
+        }
+      }
     }
   }
 
