@@ -115,7 +115,9 @@ floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum, bool 
   map.resize(gridHeight, std::vector<char>(gridWidth));
   std::vector<std::vector<std::pair<int, int>>> chamberCell;
   findChamber(map, chamberCell);
+  std::cout << "chamber ok" << std::endl;
     buildGrid(chamberCell);
+    std::cout << "build ok" << std:: endl;
   for (int i = 0; i < chamberNum; i++) {
     chamber *cham = new chamber;
     for (auto itr = chamberCell[i].begin(); itr != chamberCell[i].end(); itr++)

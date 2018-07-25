@@ -59,22 +59,28 @@ inline bool game(bool isMapGiven, std::string mapName) {
   // while ( i < 5){}
     // if there is given map for 5 floor.
   if(isMapGiven == true) {
+    std::cout << "true" << std::endl;
     std::vector<floor> floors;
     std::string row;
     std::vector<std::vector<char>> tmprows;
-    std::ifstream mapin(mapName.c_str());
+    std::cout << mapName << std::endl;
+    std::ifstream mapin(mapName);
     for (int count = 0; count < 5; count++) {
+      std::cout << "9" << std::endl;
       for (int i = 0; i < 25; i++) {
-        std::getline(std::cin, row);
+        std::cout << "2 ";
+        std::getline(mapin, row);
         std::vector<char> singleRow(row.begin(), row.end());
         tmprows.push_back(singleRow);
       }
+
       floor tmpfloor(tmprows, PC, count, isMapGiven);
+      std::cout << "7" << std::endl;
       floors.emplace_back(tmpfloor);
       count++;
     }
-
     for (int curFloor = 0; curFloor <= 4; curFloor++) {
+      std::cout << "enter floor" << std::endl;
       PC->reset();
       floors[curFloor].paint("New floor!");
       while (std::getline(std::cin, command)) {
