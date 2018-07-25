@@ -65,6 +65,7 @@ inline bool game(bool isMapGiven, std::string mapName) {
     std::vector<std::vector<char>> tmprows;
     std::cout << mapName << std::endl;
     std::ifstream mapin(mapName);
+    std::cout << mapin << std::endl;
     for (int count = 0; count < 5; count++) {
       std::cout << "9" << std::endl;
       for (int i = 0; i < 25; i++) {
