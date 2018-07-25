@@ -22,7 +22,7 @@ inline bool gameOver() {
 
 inline bool game(bool isMapGiven, std::string mapName) {
   std::cout << "Hello, welcome to CC3K...(we will add some words here later)" << std::endl;
-  std::cout << "First, choose your race among Drow, Goblin, Shade, Troll and Vampire" << std::endl;
+  std::cout << "First, choose your race among Drow(d), Goblin(g) Shade(s), Troll(t) and Vampire(v)." << std::endl;
   std::string race;
   player *PC;
   while (std::getline(std::cin, race))
