@@ -123,10 +123,8 @@ floor::floor(std::vector<std::vector<char>> map, player *PC, int floorNum, bool 
     chambers.push_back(cham);
   }
 
-
-
-  createPlayer(PC);
   if(!givenFullMap) {
+    createPlayer(PC);
     createStair();
     createPotion();
     createGold();
@@ -179,7 +177,12 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
       } else if(map[r][c] == '9') {
         grid[r][c] = new gold(6);
       } else if(map[r][c] == 'D') {
-        Dr.push_back(std::make_pair(r,c));
+        Dr.push_back(std::make_pair(r, c));
+        continue;
+      } else if(map[r][c] == '@') {
+        grid[r][c] = new cell(r, c);
+        PC->setRow(r);
+        PC->setCol(c);
       }
       map[r][c] = grid[r][c]->getDisplay();
       grid[r][c]->setPC(PC);
@@ -194,15 +197,16 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
   for(int i = 0; i < Dr.size(); i++) {
     int x = Dr[i].first;
     int y = Dr[i].second;
-    for(int r = -1; r <= 1; r++) {
-      for (int c = -1; c <= 1; c++) {
-        if(grid[x+r][y+c]->getAmount() == 6) {
-          grid[x][y] = new dragon(grid[x+r][y+c]);
+    for(int dx = -1; dx <= 1 && grid[x][y] == nullptr; dx++) {
+      for (int dy = -1; dy <= 1; dy++) {
+        if(map[x + dx][y + dy] == 'G' && grid[x + dx][y + dy]->getAmount() == 6) {
+          grid[x][y] = new dragon(grid[x + dx][y + dy]);
           map[x][y] = grid[x][y]->getDisplay();
           grid[x][y]->setPC(PC);
-          grid[x][y]->setRow(r);
-          grid[x][y]->setCol(c);
+          grid[x][y]->setRow(x);
+          grid[x][y]->setCol(y);
           enemies.push_back(grid[x][y]);
+          break;
         }
       }
     }
@@ -361,7 +365,7 @@ std::string floor::PCAttack(std::string dir) {
         newCell->replaceCell(grid[aimX][aimY]);
         grid[aimX][aimY] = newCell;
         map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
-        // delete grid[aimX][aimY];
+        delete grid[aimX][aimY];
       }
 
     action += "!";
