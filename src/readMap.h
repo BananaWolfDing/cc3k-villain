@@ -7,6 +7,4 @@
 #include <utility>
 
 std::vector<std::vector<char>> readMap(std::string givenMap);
-
 #endif
-
