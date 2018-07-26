@@ -19,6 +19,7 @@ cell *chamber::randomEmptyCell() {
   while (!c->getEmpty() || (c->getRow() == PCBornRow && c->getCol() == PCBornCol))
     c = randomCell();
 
+//  std::cout << "The random empty cell we return: (" << c->getRow() << ", " << c->getCol() << ")\n";
   return c;
 }
 
@@ -77,6 +78,7 @@ cell *chamber::createStair() {
 
 cell *chamber::createHuman() {
   cell *c = randomEmptyCell();
+//  std::cout << "The random empty cell we got: (" << c->getRow() << ", " << c->getCol() << ")\n";
   cell *npc = new human;
   updateCell(c, npc);
   npc->replaceCell(c);

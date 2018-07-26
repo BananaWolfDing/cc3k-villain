@@ -2,7 +2,6 @@
 #include "readMap.h"
 #include "character/allCharacters.h"
 #include "item/allItems.h"
-#include "window.h"
 #include <string>
 #include <iostream>
 #include <cstdlib>
@@ -22,7 +21,6 @@ inline bool gameOver() {
 }
 
 inline bool game(bool isMapGiven, std::string mapName) {
-  Xwindow *win = new Xwindow(1000, 600);
   std::cout << "Hello, welcome to CC3K...(we will add some words here later)" << std::endl;
   std::cout << "First, choose your race among Drow(d), Goblin(g), Shade(s), Troll(t) and Vampire(v)" << std::endl;
   std::string race;
@@ -52,7 +50,6 @@ inline bool game(bool isMapGiven, std::string mapName) {
       std::cout << "Invalid input, please choose again." << std::endl;
 
   std::string command;
-
 
 
   //std::vector<a>
@@ -136,8 +133,6 @@ inline bool game(bool isMapGiven, std::string mapName) {
   }
 
   std::cout << "You win! Score :" << PC->getGold() << std::endl;
-  delete PC;
-  delete win;
   return false;
 }
 

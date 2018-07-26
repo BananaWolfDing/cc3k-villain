@@ -3,7 +3,6 @@
 
 const int gridWidth = 79;
 const int gridHeight = 25;
-const int cellSize = (1000 - 1) / gridWidth - 1;
 const int chamberNum = 5;
 const int potionKinds = 6;
 const int potionNum = 10;

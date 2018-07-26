@@ -10,7 +10,6 @@
 #include <iostream>
 #include <algorithm>
 #include <fstream>
-#include <sstream>
 
 inline bool inGrid(int x, int y) {
   return x >= 0 && x < gridHeight && y >= 0 && y < gridWidth;
@@ -215,10 +214,6 @@ void floor::buildGrid(const std::vector<std::vector<std::pair<int, int>>> chambe
         linkCells(grid[i][j], grid[i][j + 1]);
       if (inGrid(i + 1, j) && grid[i][j] != nullptr && grid[i + 1][j] != nullptr)
         linkCells(grid[i][j], grid[i + 1][j]);
-      if (inGrid(i + 1, j + 1) && grid[i][j] != nullptr && grid[i + 1][j + 1] != nullptr)
-        linkCells(grid[i][j], grid[i + 1][j + 1]);
-      if (inGrid(i + 1, j - 1) && grid[i][j] != nullptr && grid[i + 1][j - 1] != nullptr)
-        linkCells(grid[i][j], grid[i + 1][j - 1]);
     }
 }
 
@@ -302,8 +297,8 @@ std::string floor::PCUsePotion(std::string dir) {
     std::string p = grid[aimX][aimY]->getName();
     grid[aimX][aimY]->use();
     cell *newCell = new cell(aimX, aimY);
-    grid[aimX][aimY] = newCell;
     newCell->replaceCell(grid[aimX][aimY]);
+    grid[aimX][aimY] = newCell;
     map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
     return "PC uses " + p;
   }
@@ -318,32 +313,21 @@ std::string floor::PCAttack(std::string dir) {
 
   if (!inGrid(aimX, aimY))
     return "Invalid direction!";
-  else if (map[aimX][aimY] == '-' || map[aimX][aimY] == '|' || map[aimX][aimY] == '+' ||
-           map[aimX][aimY] == ' ' || map[aimX][aimY] == '#' || !grid[aimX][aimY]->isCharacter())
+  else if (!grid[aimX][aimY]->isCharacter())
     return "There is no enemy in " + formal[dirIndex(dir)];
   else {
     action = PC->attack(*grid[aimX][aimY]);
+
     if (grid[aimX][aimY]->getHp() == 0) {
-      std::string deadEnemy = grid[aimX][aimY]->getRace();
       grid[aimX][aimY]->die(*PC);
       action += " and killed it";
-      for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
-        if (*itr == grid[aimX][aimY]) {
-          enemies.erase(itr);
-          break;
-        }
-        cell *newCell = new cell(aimX, aimY);
-        newCell->replaceCell(grid[aimX][aimY]);
-        grid[aimX][aimY] = newCell;
-        map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
-
-      if(deadEnemy == "Merchant") {
+      if(grid[aimX][aimY]->getRace() == "Merchant") {
         gold *newMerchantHoard = new gold(4);
         newMerchantHoard->replaceCell(grid[aimX][aimY]);
         grid[aimX][aimY] = newMerchantHoard;
         map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
       }
-      else if(deadEnemy == "Human") {
+      else if(grid[aimX][aimY]->getRace() == "Human") {
         gold *newHumanHoard = new gold(2);
         newHumanHoard->replaceCell(grid[aimX][aimY]);
         grid[aimX][aimY] = newHumanHoard;
@@ -367,7 +351,19 @@ std::string floor::PCAttack(std::string dir) {
           map[xx][yy] = grid[xx][yy]->getDisplay();
         }
       }
-    }
+
+      for (auto itr = enemies.begin(); itr != enemies.end(); itr++)
+        if (*itr == grid[aimX][aimY]) {
+          enemies.erase(itr);
+          break;
+        }
+        cell *newCell = new cell(aimX, aimY);
+        newCell->replaceCell(grid[aimX][aimY]);
+        grid[aimX][aimY] = newCell;
+        map[aimX][aimY] = grid[aimX][aimY]->getDisplay();
+        // delete grid[aimX][aimY];
+      }
+
     action += "!";
   }
 
@@ -453,60 +449,7 @@ std::string floor::enemyTurn() {
   return action;
 }
 
-inline void printAction(Xwindow *win, std::string action, int x, int y) {
-  std::istringstream ss{action};
-
-  std::string row;
-  while (std::getline(ss, row)) {
-    win->drawString(x, y, row);
-    y += 20;
-  }
-}
-
-void floor::paint(std::string action, Xwindow *win) const {
-  win->fillRectangle(0, 0, 1000, 600, Xwindow::White);
-  for (int i = 0; i <= gridHeight; i++)
-    win->fillRectangle(0, i * (cellSize + 1), gridWidth * (cellSize + 1) + 1, 1, Xwindow::Black);
-
-  for (int i = 0; i <= gridWidth; i++)
-    win->fillRectangle(i * (cellSize + 1), 0, 1, gridHeight * (cellSize + 1) + 1, Xwindow::Black);
-
-  for (int i = 0; i < gridHeight; i++)
-    for (int j = 0; j < gridWidth; j++) {
-      int x = i * (cellSize + 1) + 1;
-      int y = j * (cellSize + 1) + 1;
-      if (i == PC->getRow() && j == PC->getCol())
-        win->fillRectangle(y, x, cellSize, cellSize, Xwindow::Blue);
-      else if (map[i][j] == ' ')
-        win->fillRectangle(y, x, cellSize, cellSize, Xwindow::Gray);
-      else if (map[i][j] == '-' || map[i][j] == '|')
-        win->fillRectangle(y, x, cellSize, cellSize, Xwindow::Black);
-      else if (map[i][j] == '#' || map[i][j] == '+')
-        win->fillRectangle(y, x, cellSize, cellSize, Xwindow::Green);
-      else if (map[i][j] == 'G')
-        win->fillRectangle(y, x, cellSize, cellSize, Xwindow::Gold);
-      else if (map[i][j] == '.')
-        win->fillRectangle(y, x, cellSize, cellSize, Xwindow::White);
-      else if (map[i][j] == 'P')
-        win->fillRectangle(y, x, cellSize, cellSize, Xwindow::Indigo);
-      else if (map[i][j] == '\\')
-        win->fillRectangle(y, x, cellSize, cellSize, Xwindow::Cyan);
-      else {
-        win->fillRectangle(y, x, cellSize, cellSize, Xwindow::Red);
-        win->drawString(y + cellSize / 2, x + cellSize, std::string(1, map[i][j]));
-      }
-    }
-
-  int textRow = gridHeight * (cellSize + 1) + 1;
-  win->drawString(15, textRow + 20, "Race: " + PC->getRace());
-  win->drawString(15, textRow + 40, "Gold: " + std::to_string(PC->getGold()));
-  win->drawString(15, textRow + 60, "Floor: " + std::to_string(whichFloor));
-  win->drawString(15, textRow + 80, "Hp: " + std::to_string(PC->getHp()));
-  win->drawString(15, textRow + 100, "Atk: " + std::to_string(PC->getAtk()));
-  win->drawString(15, textRow + 120, "Def: " + std::to_string(PC->getDef()));
-  win->drawString(15, textRow + 140, "Action:");
-  printAction(win, action, 15, textRow + 160);
-
+void floor::paint(std::string action) const {
   for (int i = 0; i < gridHeight; i++) {
     for (int j = 0; j < gridWidth; j++)
       if (i == PC->getRow() && j == PC->getCol())

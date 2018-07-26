@@ -53,7 +53,8 @@ void cell::replaceCell(cell *c) {
     (*itr)->addNeighbour(this);
   }
 
-  delete c;
+  // delete c;
+  c = this;
 }
 
 player *cell::getPC() const {
