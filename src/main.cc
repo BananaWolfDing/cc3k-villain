@@ -43,7 +43,7 @@ inline bool game(bool isMapGiven, std::string mapName) {
       break;
     }
     else if (race == "v") {
-      PC = new vampire;
+      PC = new vampire;https://github.com/MashedPotatoDing/cc3k-villain.git
       break;
     }
     else
@@ -57,7 +57,7 @@ inline bool game(bool isMapGiven, std::string mapName) {
   //for random create player on first floor
   // int i = 0;
   // while ( i < 5){}
-    // if there is given map for 5 floor.
+  // if there is given map for 5 floor.
   if(isMapGiven == true) {
     std::vector<std::vector<std::vector<char>>> floors;
     std::string row;
@@ -70,12 +70,11 @@ inline bool game(bool isMapGiven, std::string mapName) {
         tmprows.push_back(singleRow);
       }
       floors.push_back(tmprows);
-      count++;
     }
     for (int curFloor = 0; curFloor <= 4; curFloor++) {
       std::cout << "enter floor" << curFloor << std::endl;
       PC->reset();
-      floor gameFloor(floors[curFloor], PC, curFloor, isMapGiven);
+      floor gameFloor(floors[curFloor], PC, curFloor + 1, isMapGiven);
       gameFloor.paint("New floor!");
       while (std::getline(std::cin, command)) {
         if (command == "q")
